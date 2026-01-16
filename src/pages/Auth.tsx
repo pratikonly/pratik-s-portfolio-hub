@@ -1,18 +1,17 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Mail, Lock, LogIn, UserPlus } from 'lucide-react';
+import { Mail, Lock, LogIn } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 
 export default function Auth() {
-  const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signIn, signUp } = useAuth();
+  const { signIn } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -20,14 +19,12 @@ export default function Auth() {
     e.preventDefault();
     setLoading(true);
     
-    const { error } = isLogin 
-      ? await signIn(email, password)
-      : await signUp(email, password);
+    const { error } = await signIn(email, password);
 
     if (error) {
       toast({ title: 'Error', description: error.message, variant: 'destructive' });
     } else {
-      toast({ title: isLogin ? 'Welcome back!' : 'Account created!' });
+      toast({ title: 'Welcome back!' });
       navigate('/admin');
     }
     setLoading(false);
@@ -42,10 +39,10 @@ export default function Auth() {
       >
         <div className="text-center mb-8">
           <h1 className="text-3xl font-heading font-bold gradient-text">
-            {isLogin ? 'Welcome Back' : 'Create Account'}
+            Admin Login
           </h1>
           <p className="text-muted-foreground mt-2">
-            {isLogin ? 'Sign in to access admin panel' : 'Sign up for an account'}
+            Sign in to access admin panel
           </p>
         </div>
 
@@ -74,21 +71,14 @@ export default function Auth() {
             />
           </div>
           <Button type="submit" disabled={loading} className="w-full h-12 btn-primary">
-            {loading ? 'Loading...' : (
+            {loading ? 'Signing in...' : (
               <>
-                {isLogin ? <LogIn className="w-4 h-4 mr-2" /> : <UserPlus className="w-4 h-4 mr-2" />}
-                {isLogin ? 'Sign In' : 'Sign Up'}
+                <LogIn className="w-4 h-4 mr-2" />
+                Sign In
               </>
             )}
           </Button>
         </form>
-
-        <p className="text-center text-muted-foreground mt-6">
-          {isLogin ? "Don't have an account?" : 'Already have an account?'}{' '}
-          <button onClick={() => setIsLogin(!isLogin)} className="text-primary hover:underline">
-            {isLogin ? 'Sign Up' : 'Sign In'}
-          </button>
-        </p>
       </motion.div>
     </div>
   );

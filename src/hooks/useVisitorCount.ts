@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 
+// Offset to add previous site visitors
+const VISITOR_OFFSET = 800;
+
 export function useVisitorCount() {
-  const [count, setCount] = useState<number>(0);
+  const [count, setCount] = useState<number>(VISITOR_OFFSET);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -30,7 +33,7 @@ export function useVisitorCount() {
           .single();
 
         if (!error && data) {
-          setCount(data.count);
+          setCount(data.count + VISITOR_OFFSET);
         }
       } catch (error) {
         console.error('Error tracking visitor:', error);

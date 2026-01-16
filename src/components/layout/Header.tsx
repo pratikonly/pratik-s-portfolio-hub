@@ -16,12 +16,26 @@ const navLinks = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const { count } = useVisitorCount();
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      // Detect active section
+      const sections = ['home', 'about', 'projects', 'skills', 'contact'];
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -58,40 +72,47 @@ export function Header() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2 group">
-              <motion.div
-                whileHover={{ rotate: 360 }}
+            <Link to="/" className="flex items-center group">
+              <motion.img
+                whileHover={{ rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.5 }}
-                className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center"
-              >
-                <span className="text-xl font-bold text-primary">P</span>
-              </motion.div>
-              <span className="text-xl font-heading font-bold hidden sm:block">
-                Pratik
-              </span>
+                src="https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/logo.png"
+                alt="Logo"
+                className="w-10 h-10 rounded-lg"
+              />
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  onClick={(e) => {
-                    if (link.href.startsWith('/#')) {
-                      e.preventDefault();
-                      handleNavClick(link.href);
-                    }
-                  }}
-                  className="relative text-muted-foreground hover:text-foreground transition-colors group"
-                >
-                  {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-                </Link>
-              ))}
+            {/* Desktop Navigation - Centered Pill Style */}
+            <nav className="hidden md:flex items-center">
+              <div className="flex items-center gap-1 px-2 py-2 rounded-full bg-secondary/50 backdrop-blur-sm border border-border">
+                {navLinks.map((link) => {
+                  const sectionId = link.href.replace('/#', '');
+                  const isActive = activeSection === sectionId;
+                  return (
+                    <Link
+                      key={link.href}
+                      to={link.href}
+                      onClick={(e) => {
+                        if (link.href.startsWith('/#')) {
+                          e.preventDefault();
+                          handleNavClick(link.href);
+                        }
+                      }}
+                      className={cn(
+                        "relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                        isActive
+                          ? "bg-primary text-primary-foreground"
+                          : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                      )}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
+              </div>
             </nav>
 
-            {/* Visitor Counter */}
+            {/* Visitor Counter - Desktop */}
             <div className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border">
               <Users className="w-4 h-4 text-primary" />
               <span className="text-sm text-muted-foreground">Visitors:</span>
@@ -100,18 +121,24 @@ export function Header() {
               </span>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-foreground"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
+            {/* Mobile: Visitor Counter + Menu Button */}
+            <div className="md:hidden flex items-center gap-3">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary/50 border border-border">
+                <Users className="w-3.5 h-3.5 text-primary" />
+                <span className="text-xs font-semibold">{count.toLocaleString()}</span>
+              </div>
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 text-foreground"
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </motion.header>
@@ -126,27 +153,31 @@ export function Header() {
             transition={{ duration: 0.2 }}
             className="fixed inset-x-0 top-16 z-40 bg-background/95 backdrop-blur-lg border-b border-border md:hidden"
           >
-            <nav className="container mx-auto px-4 py-6 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  onClick={(e) => {
-                    if (link.href.startsWith('/#')) {
-                      e.preventDefault();
-                      handleNavClick(link.href);
-                    }
-                  }}
-                  className="text-lg text-muted-foreground hover:text-foreground transition-colors py-2"
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <div className="flex items-center gap-2 pt-4 border-t border-border">
-                <Users className="w-4 h-4 text-primary" />
-                <span className="text-sm text-muted-foreground">Visitors:</span>
-                <span className="text-sm font-semibold">{count.toLocaleString()}</span>
-              </div>
+            <nav className="container mx-auto px-4 py-6 flex flex-col gap-2">
+              {navLinks.map((link) => {
+                const sectionId = link.href.replace('/#', '');
+                const isActive = activeSection === sectionId;
+                return (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    onClick={(e) => {
+                      if (link.href.startsWith('/#')) {
+                        e.preventDefault();
+                        handleNavClick(link.href);
+                      }
+                    }}
+                    className={cn(
+                      "text-lg py-3 px-4 rounded-lg transition-colors",
+                      isActive
+                        ? "bg-primary text-primary-foreground"
+                        : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
             </nav>
           </motion.div>
         )}
