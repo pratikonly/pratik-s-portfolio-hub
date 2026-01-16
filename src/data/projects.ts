@@ -20,21 +20,21 @@ export const projects: Project[] = [
   },
   {
     id: 2,
-    title: "Exciler - Burner Mails",
-    description: "A free temporary email service that creates instant burner or custom addresses with an auto-deleting inbox—no registration required.",
-    image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-8.PNG",
-    category: "app",
-    tech: ["HTML", "CSS", "JavaScript"],
-    liveUrl: "https://exciler.vercel.app/"
-  },
-  {
-    id: 3,
     title: "Nest",
     description: "A minimalist real-time chat app with user login, clean interface, and options to clear chat history.",
     image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-7.png",
     category: "app",
     tech: ["HTML", "CSS", "JavaScript"],
     liveUrl: "https://nestxmain.vercel.app/"
+  },
+  {
+    id: 3,
+    title: "Exciler - Burner Mails",
+    description: "A free temporary email service that creates instant burner or custom addresses with an auto-deleting inbox—no registration required.",
+    image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-8.PNG",
+    category: "app",
+    tech: ["HTML", "CSS", "JavaScript"],
+    liveUrl: "https://exciler.vercel.app/"
   },
   {
     id: 4,
