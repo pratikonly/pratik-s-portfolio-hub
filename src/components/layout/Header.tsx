@@ -69,10 +69,10 @@ export function Header() {
             : "bg-transparent"
         )}
       >
-        <div className="container mx-auto px-4">
-          <div className="flex items-center h-16 md:h-20">
+        <div className="container mx-auto px-4 md:px-[10%]">
+          <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo - Left */}
-            <Link to="/" className="flex items-center group">
+            <Link to="/" className="flex items-center group shrink-0">
               <motion.img
                 whileHover={{ rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.5 }}
@@ -113,7 +113,7 @@ export function Header() {
             </nav>
 
             {/* Visitor Counter - Desktop - Right */}
-            <div className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border ml-auto">
+            <div className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border">
               <Users className="w-4 h-4 text-primary" />
               <span className="text-sm text-muted-foreground">Visitors:</span>
               <span className="text-sm font-semibold text-foreground">
@@ -121,24 +121,24 @@ export function Header() {
               </span>
             </div>
 
-            {/* Mobile: Visitor Counter + Menu Button */}
-            <div className="md:hidden flex items-center gap-3">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary/50 border border-border">
-                <Users className="w-3.5 h-3.5 text-primary" />
-                <span className="text-xs font-semibold">{count.toLocaleString()}</span>
-              </div>
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 text-foreground"
-                aria-label="Toggle menu"
-              >
-                {isMobileMenuOpen ? (
-                  <X className="w-6 h-6" />
-                ) : (
-                  <Menu className="w-6 h-6" />
-                )}
-              </button>
+            {/* Mobile: Logo Left, Visitor Center, Menu Right */}
+            <div className="md:hidden flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary/50 border border-border absolute left-1/2 -translate-x-1/2">
+              <Users className="w-3.5 h-3.5 text-primary" />
+              <span className="text-xs font-semibold">{count.toLocaleString()}</span>
             </div>
+
+            {/* Mobile Menu Button - Right */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 text-foreground shrink-0"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
           </div>
         </div>
       </motion.header>
