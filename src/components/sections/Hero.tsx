@@ -16,7 +16,7 @@ const DiscordIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const roles = ['Programmer', 'Frontend Developer', 'Backend Developer', 'Full Stack Developer'];
+const roles = ['Programmer', 'Frontend Developer', 'Backend Developer', 'Full Stack Developer', 'Student'];
 
 const socialLinks = [
   { icon: Github, href: personalInfo.github, label: 'GitHub' },
