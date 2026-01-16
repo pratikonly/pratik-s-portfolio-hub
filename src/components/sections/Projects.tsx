@@ -96,7 +96,7 @@ export function Projects() {
 
   return (
     <section id="projects" className="py-20 md:py-32 bg-secondary/30" ref={ref}>
-      <div className="container mx-auto px-4">
+      <div className="w-full md:w-[80%] mx-auto px-4">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
