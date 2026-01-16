@@ -7,49 +7,85 @@ import { Input } from '@/components/ui/input';
 interface Message {
   role: 'bot' | 'user';
   content: string;
-  typing?: boolean;
 }
 
 const responses: Record<string, { keywords: string[]; response: string }[]> = {
   greetings: [
     { keywords: ['hi', 'hello', 'hey', 'hola', 'sup'], response: "Hey there! 👋 Great to meet you! I'm here to tell you all about Pratik's work. What would you like to know?" }
   ],
+  help: [
+    { keywords: ['help', 'what can you do', 'how can you help', 'capabilities'], response: "🤖 **How I Can Help:**\n\n• Tell you about **Pratik's skills** and technologies\n• Share details about **specific projects**\n• Provide **contact information** (email, Discord, GitHub)\n• Explain how to **send feedback** or reach out\n• Share **availability** for freelance/hire\n• Guide you through the **portfolio sections**\n\nJust ask me anything!" }
+  ],
   skills: [
     { keywords: ['skill', 'tech', 'know', 'language', 'framework', 'tool'], response: "💻 **Technical Skills:**\n\n• **Frontend:** HTML5, CSS3, JavaScript, React, TypeScript\n• **Styling:** Tailwind CSS, Sass, Bootstrap\n• **Tools:** Git, GitHub, VS Code, Figma, NPM\n• **Other:** Responsive Design, API Integration, UI/UX\n\nWant to know about specific projects using these?" }
   ],
   projects: [
-    { keywords: ['project', 'work', 'portfolio', 'build', 'made', 'create'], response: "🚀 **Featured Projects:**\n\n1. **PirateOne** - Streaming platform for movies & anime\n2. **Exciler** - Temporary email service\n3. **Nest** - Real-time chat application\n4. **CloudVault** - Resource sharing platform\n5. **NotaForge** - Note-taking app with file uploads\n\nScroll to the Projects section to see them all! Any specific one you'd like to know more about?" }
+    { keywords: ['project', 'work', 'portfolio', 'build', 'made', 'create', 'all project'], response: "🚀 **All Projects:**\n\n1. **PirateOne** - Streaming platform\n2. **Nest** - Real-time chat app\n3. **Exciler** - Temp email service\n4. **Devtri Seczone** - Corporate website\n5. **NotaForge** - Note-taking app\n6. **CloudVault v2** - Resource sharing\n7. **CloudVault** - Digital arsenal\n8. **Window Activation** - Windows tool\n9. **Portfolio** - This website!\n\nAsk about any specific project for details!" }
+  ],
+  pirateone: [
+    { keywords: ['pirate', 'pirateone', 'streaming', 'movie', 'anime', 'watch'], response: "🏴‍☠️ **PirateOne:**\n\nAn advanced web-based entertainment platform featuring:\n• Browse movies, TV shows & anime\n• Powerful search functionality\n• Personal watchlist management\n• Watch history tracking\n• Clean, intuitive interface\n\n**Tech:** HTML, CSS, JavaScript\n**Live:** piratexone.vercel.app\n\nGreat for binge-watchers! 🎬" }
+  ],
+  nest: [
+    { keywords: ['nest', 'chat', 'messaging', 'real-time', 'realtime'], response: "🪺 **Nest:**\n\nA minimalist real-time chat application:\n• User authentication & login\n• Clean, modern interface\n• Real-time messaging\n• Chat history management\n• Option to clear conversations\n\n**Tech:** HTML, CSS, JavaScript\n**Live:** nestxmain.vercel.app\n\nSimple yet effective communication! 💬" }
+  ],
+  exciler: [
+    { keywords: ['exciler', 'burner', 'temp', 'temporary', 'email', 'mail'], response: "📧 **Exciler - Burner Mails:**\n\nA free temporary email service:\n• Instant burner addresses\n• Custom email creation\n• Auto-deleting inbox\n• No registration required\n• Privacy-focused design\n\n**Tech:** HTML, CSS, JavaScript\n**Live:** exciler.vercel.app\n\nPerfect for protecting your privacy! 🔒" }
+  ],
+  cloudvault: [
+    { keywords: ['cloudvault', 'cloud', 'vault', 'resource', 'arsenal', 'digital'], response: "☁️ **CloudVault (v1 & v2):**\n\n**CloudVault v2:**\n• Community-driven platform\n• Categorized online resources\n• Password-protected edits\n• Easy resource sharing\n\n**CloudVault v1 (Digital Arsenal):**\n• Tech resources for developers\n• Curated collection of tools\n• Developer-focused content\n\n**Tech:** HTML, CSS, JavaScript\n**Live:** cloudxvault2.vercel.app & cloudxvault.vercel.app" }
+  ],
+  notaforge: [
+    { keywords: ['notaforge', 'nota', 'note', 'notepad'], response: "📝 **NotaForge:**\n\nA feature-rich note-taking app:\n• Image & file uploads\n• Color customization\n• Note organization\n• Built with Express & PostgreSQL\n• Cloud-synced notes\n\n**Tech:** HTML, CSS, JavaScript, Node.js, PostgreSQL\n**Live:** notepad-main-ftid.onrender.com\n\nYour digital notebook! 📓" }
+  ],
+  devtri: [
+    { keywords: ['devtri', 'seczone', 'corporate', 'company', 'business'], response: "🏢 **Devtri Seczone Private Limited:**\n\nA professional corporate website:\n• Responsive design\n• Modern UI/UX\n• Professional layout\n• Industry-focused content\n• Clean navigation\n\n**Tech:** HTML, CSS, JavaScript\n**Live:** devtriseczone.vercel.app\n\nEmpowering industries! 💼" }
+  ],
+  window: [
+    { keywords: ['window', 'activation', 'activate', 'microsoft'], response: "🪟 **Window Activation Page:**\n\nA helpful utility website:\n• 2 activation methods\n• Easy-to-follow steps\n• Windows OS activation guide\n• Clean, simple interface\n\n**Tech:** HTML, CSS, JavaScript\n**Live:** window-activate.vercel.app" }
   ],
   contact: [
-    { keywords: ['contact', 'email', 'reach', 'message', 'connect', 'discord'], response: "📬 **Get in Touch:**\n\n• **Email:** pratikxdev@outlook.com\n• **Discord:** Available in Contact section\n• **GitHub:** Check out my repositories\n\nFeel free to reach out for collaborations or project inquiries!" }
+    { keywords: ['contact', 'reach', 'connect', 'get in touch'], response: "📬 **Contact Pratik:**\n\n• **Email:** pratikxdev@outlook.com\n• **Discord:** Check the Contact section\n• **GitHub:** github.com/pratik11500\n\n**Ways to reach out:**\n1. Send an email directly\n2. Connect on Discord for quick chats\n3. Check GitHub for code & contributions\n4. Use the Contact form on this site!\n\nI respond to all messages! 📩" }
+  ],
+  email: [
+    { keywords: ['email', 'mail', 'outlook'], response: "📧 **Email:**\n\n**pratikxdev@outlook.com**\n\nFeel free to email for:\n• Project inquiries\n• Freelance opportunities\n• Collaboration proposals\n• General questions\n\nI usually respond within 24 hours! ⚡" }
+  ],
+  discord: [
+    { keywords: ['discord', 'server', 'dm'], response: "💬 **Discord:**\n\nYou can find my Discord in the Contact section of this portfolio. It's great for:\n• Quick conversations\n• Real-time discussions\n• Casual chats about tech\n• Project brainstorming\n\nDon't hesitate to DM! 🎮" }
+  ],
+  github: [
+    { keywords: ['github', 'git', 'repo', 'repository', 'code', 'source'], response: "💻 **GitHub:**\n\n**github.com/pratik11500**\n\nOn my GitHub you'll find:\n• Source code for projects\n• Open-source contributions\n• Code samples & experiments\n• Project documentation\n\nFeel free to star repos you like! ⭐" }
+  ],
+  feedback: [
+    { keywords: ['feedback', 'review', 'comment', 'suggestion', 'opinion'], response: "💭 **Send Feedback:**\n\nI'd love to hear from you! You can:\n\n1. **Use the Contact Form** - Scroll to the Contact section and fill out the form\n2. **Email directly** - pratikxdev@outlook.com\n3. **Discord** - For quick feedback\n\nAll feedback helps me improve! Whether it's about:\n• This portfolio\n• My projects\n• Suggestions for new features\n• Bug reports\n\nYour input is valued! 🙏" }
   ],
   experience: [
-    { keywords: ['experience', 'year', 'long', 'background'], response: "📊 **Experience:**\n\n• **2+ Years** in Web Development\n• **15+ Projects** Completed\n• **Multiple Happy Clients**\n• Specialized in Frontend Development\n\nI'm constantly learning and building new things!" }
+    { keywords: ['experience', 'year', 'long', 'background', 'journey'], response: "📊 **Experience:**\n\n• **2+ Years** in Web Development\n• **15+ Projects** Completed\n• **Multiple Happy Clients**\n• Specialized in Frontend Development\n• Self-taught & continuously learning\n\nI'm passionate about creating beautiful, functional web experiences!" }
   ],
   hire: [
-    { keywords: ['hire', 'freelance', 'available', 'job', 'work together', 'collaborate'], response: "✨ **Availability:**\n\nYes! I'm currently open for:\n• Freelance Projects\n• Full-time Opportunities\n• Collaborations\n\n📧 Email me at **pratikxdev@outlook.com** with your project details and let's create something amazing together!" }
+    { keywords: ['hire', 'freelance', 'available', 'job', 'work together', 'collaborate', 'opportunity'], response: "✨ **Hire Me:**\n\nCurrently available for:\n• **Freelance Projects**\n• **Full-time Opportunities**\n• **Collaborations**\n• **Contract Work**\n\n**How to proceed:**\n1. Email: pratikxdev@outlook.com\n2. Include project details\n3. Share your timeline & budget\n4. I'll get back within 24 hours!\n\nLet's build something amazing! 🚀" }
   ],
   about: [
-    { keywords: ['about', 'who', 'yourself', 'pratik', 'you'], response: "👨‍💻 **About Pratik:**\n\nI'm a passionate Frontend Developer who loves creating beautiful, functional web experiences. I focus on clean code, modern design, and user-friendly interfaces.\n\nMy goal is to turn ideas into reality through code! Check out the 'Who I Am' section for more details." }
+    { keywords: ['about', 'who', 'yourself', 'pratik', 'you', 'introduce'], response: "👨‍💻 **About Pratik:**\n\nA passionate Frontend Developer who:\n• Creates beautiful web experiences\n• Focuses on clean, maintainable code\n• Values modern design & UX\n• Loves learning new technologies\n• Builds projects that solve problems\n\nCheck the 'Who I Am' section for the full story! 🌟" }
   ],
   thanks: [
-    { keywords: ['thank', 'thanks', 'thx', 'appreciate'], response: "You're welcome! 😊 Is there anything else you'd like to know about Pratik's work or how to get in touch?" }
+    { keywords: ['thank', 'thanks', 'thx', 'appreciate', 'awesome', 'great', 'cool'], response: "You're welcome! 😊 I'm glad I could help!\n\nAnything else you'd like to know about Pratik's work, projects, or how to get in touch?" }
   ],
   bye: [
-    { keywords: ['bye', 'goodbye', 'see you', 'later', 'cya'], response: "Goodbye! 👋 Feel free to come back anytime. Don't forget to check out the projects and reach out if you're interested in working together!" }
+    { keywords: ['bye', 'goodbye', 'see you', 'later', 'cya', 'exit'], response: "Goodbye! 👋 Thanks for chatting!\n\nRemember:\n📧 pratikxdev@outlook.com\n💻 github.com/pratik11500\n\nFeel free to come back anytime. Best of luck! ✨" }
   ]
 };
 
 const suggestions = [
-  "What are your skills?",
-  "Tell me about projects",
+  "What can you help with?",
+  "Tell me about PirateOne",
   "How can I contact you?",
-  "Are you available for hire?"
+  "Show all projects"
 ];
 
 function getResponse(message: string): string {
   const lower = message.toLowerCase();
   
+  // Check each category for matching keywords
   for (const category of Object.values(responses)) {
     for (const item of category) {
       if (item.keywords.some(keyword => lower.includes(keyword))) {
@@ -58,13 +94,13 @@ function getResponse(message: string): string {
     }
   }
   
-  return "🤔 I'm not sure about that, but I can help you with:\n\n• My **skills** and technologies\n• **Projects** I've built\n• How to **contact** me\n• My **availability** for work\n\nWhat would you like to explore?";
+  return "🤔 I'm not sure about that, but I can help with:\n\n• **Skills** - Technologies I know\n• **Projects** - Work I've built (PirateOne, Nest, etc.)\n• **Contact** - Email, Discord, GitHub\n• **Feedback** - How to share thoughts\n• **Hire** - Availability for work\n\nTry asking about any of these! 💡";
 }
 
 export function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'bot', content: "👋 Hi! I'm Pratik's AI assistant. I can tell you about skills, projects, experience, or how to get in touch.\n\nTry asking me something or use the quick buttons below!" },
+    { role: 'bot', content: "👋 Hi! I'm Pratik's AI assistant.\n\nI can help you with:\n• Project details\n• Contact info (email, Discord, GitHub)\n• Skills & experience\n• How to send feedback\n\nWhat would you like to know?" },
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -86,7 +122,6 @@ export function Chatbot() {
     setInput('');
     setIsTyping(true);
     
-    // Simulate typing delay for more natural feel
     const typingDelay = Math.random() * 500 + 800;
     setTimeout(() => {
       setIsTyping(false);
@@ -150,7 +185,6 @@ export function Chatbot() {
                 </motion.div>
               ))}
               
-              {/* Typing indicator */}
               {isTyping && (
                 <motion.div
                   initial={{ opacity: 0 }}
