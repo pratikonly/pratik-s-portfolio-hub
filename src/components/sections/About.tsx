@@ -59,8 +59,15 @@ export function About() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-20 md:py-32 relative" ref={ref}>
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-20 md:py-32 relative overflow-hidden" ref={ref}>
+      {/* Animated Background Orbs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-orb" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-orb-delayed" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl animate-orb-slow" />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -118,12 +125,17 @@ export function About() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
-                className="gradient-border p-6 text-center"
+                whileHover={{ scale: 1.05, y: -8 }}
+                className="group relative gradient-border p-6 text-center overflow-hidden animate-glow-pulse"
               >
-                <h3 className="text-4xl md:text-5xl font-heading font-bold gradient-text mb-2">
+                {/* Animated background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-primary/5 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <h3 className="relative text-4xl md:text-5xl font-heading font-bold gradient-text mb-2">
                   <Counter target={stat.value} />
                 </h3>
-                <p className="text-muted-foreground text-sm">{stat.label}</p>
+                <p className="relative text-muted-foreground text-sm">{stat.label}</p>
               </motion.div>
             ))}
           </motion.div>

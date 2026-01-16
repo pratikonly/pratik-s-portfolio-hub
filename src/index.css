@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Zoom out effect - slightly smaller base scale */
+/* Zoom out effect - 10% smaller */
 html {
-  font-size: 15px;
+  font-size: 14.4px; /* 16px * 0.9 = 14.4px for 10% zoom out */
 }
 
 /* Pratik's Portfolio Design System - Dark Theme with Purple Accents */
@@ -246,5 +246,81 @@ html {
     50% {
       background-position: 100% 50%;
     }
+  }
+
+  /* Floating orbs animation */
+  @keyframes orb-float {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    25% {
+      transform: translate(30px, -30px) scale(1.1);
+    }
+    50% {
+      transform: translate(60px, 0) scale(1);
+    }
+    75% {
+      transform: translate(30px, 30px) scale(0.9);
+    }
+  }
+
+  .animate-orb {
+    animation: orb-float 20s ease-in-out infinite;
+  }
+
+  .animate-orb-delayed {
+    animation: orb-float 25s ease-in-out infinite 5s;
+  }
+
+  .animate-orb-slow {
+    animation: orb-float 30s ease-in-out infinite 10s;
+  }
+
+  /* Particle shimmer */
+  @keyframes shimmer {
+    0% {
+      opacity: 0;
+      transform: translateY(0) scale(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(-20px) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-40px) scale(0);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  /* Glow pulse for boxes */
+  @keyframes glow-pulse {
+    0%, 100% {
+      box-shadow: 0 0 15px hsl(270 70% 60% / 0.2), inset 0 0 15px hsl(270 70% 60% / 0.05);
+    }
+    50% {
+      box-shadow: 0 0 30px hsl(270 70% 60% / 0.4), inset 0 0 20px hsl(270 70% 60% / 0.1);
+    }
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  /* Border glow animation */
+  @keyframes border-glow {
+    0%, 100% {
+      border-color: hsl(270 70% 60% / 0.3);
+    }
+    50% {
+      border-color: hsl(270 70% 60% / 0.7);
+    }
+  }
+
+  .animate-border-glow {
+    animation: border-glow 2s ease-in-out infinite;
   }
 }
