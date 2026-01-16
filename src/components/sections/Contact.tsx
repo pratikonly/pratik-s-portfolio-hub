@@ -84,13 +84,6 @@ export function Contact() {
 
   return (
     <section id="contact" className="py-20 md:py-32 bg-secondary/30 relative overflow-hidden" ref={ref}>
-      {/* Animated Background Orbs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-10 right-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-orb" />
-        <div className="absolute bottom-10 left-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-orb-delayed" />
-        <div className="absolute top-1/2 right-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-orb-slow" />
-      </div>
-
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <motion.div
@@ -122,20 +115,21 @@ export function Contact() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                 whileHover={{ scale: 1.02, y: -4 }}
-                className="group relative p-6 rounded-xl bg-card border border-border overflow-hidden transition-all duration-300 hover:border-primary/50 animate-glow-pulse"
+                className="group relative p-6 rounded-xl bg-card border border-border overflow-hidden transition-all duration-300 hover:border-primary/50"
               >
-                {/* Enhanced glow effect on hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute inset-0 bg-primary/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Animated border */}
-                <div className="absolute inset-0 rounded-xl border border-primary/20 group-hover:border-primary/50 transition-colors duration-300" />
+                {/* Animated wave background under the box */}
+                <div className="absolute inset-0 -z-10">
+                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-primary/5 to-transparent animate-pulse" />
+                  <div className="absolute inset-0 overflow-hidden">
+                    <div className="absolute -bottom-2 left-0 right-0 h-6 bg-primary/10 rounded-full blur-md animate-float" style={{ animationDelay: `${index * 0.15}s` }} />
+                  </div>
+                </div>
                 
                 <div className="relative flex items-start gap-4">
                   <motion.div 
                     whileHover={{ rotate: 360, scale: 1.1 }}
                     transition={{ duration: 0.5 }}
-                    className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors animate-pulse-glow"
+                    className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors"
                   >
                     <item.icon className="w-6 h-6 text-primary" />
                   </motion.div>
@@ -169,8 +163,6 @@ export function Contact() {
                   className="group relative p-4 rounded-full bg-card border border-border hover:border-primary/50 text-muted-foreground hover:text-primary transition-all duration-300"
                   aria-label={link.label}
                 >
-                  {/* Glow effect */}
-                  <div className="absolute inset-0 rounded-full bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   {link.isCustom ? (
                     <link.icon className="w-6 h-6 relative z-10" />
                   ) : (
