@@ -60,7 +60,7 @@ export function About() {
 
   return (
     <section id="about" className="py-20 md:py-32 relative overflow-hidden" ref={ref}>
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="w-full md:w-[80%] mx-auto px-4 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
