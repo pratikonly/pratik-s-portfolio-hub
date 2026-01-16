@@ -70,20 +70,20 @@ export function Header() {
         )}
       >
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo */}
+          <div className="flex items-center h-16 md:h-20">
+            {/* Logo - Left */}
             <Link to="/" className="flex items-center group">
               <motion.img
                 whileHover={{ rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.5 }}
                 src="https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/logo.png"
                 alt="Logo"
-                className="w-10 h-10 rounded-lg"
+                className="w-12 h-12 md:w-14 md:h-14 rounded-lg"
               />
             </Link>
 
-            {/* Desktop Navigation - Centered Pill Style */}
-            <nav className="hidden md:flex items-center">
+            {/* Desktop Navigation - Absolutely Centered */}
+            <nav className="hidden md:flex items-center absolute left-1/2 -translate-x-1/2">
               <div className="flex items-center gap-1 px-2 py-2 rounded-full bg-secondary/50 backdrop-blur-sm border border-border">
                 {navLinks.map((link) => {
                   const sectionId = link.href.replace('/#', '');
@@ -112,8 +112,8 @@ export function Header() {
               </div>
             </nav>
 
-            {/* Visitor Counter - Desktop */}
-            <div className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border">
+            {/* Visitor Counter - Desktop - Right */}
+            <div className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border ml-auto">
               <Users className="w-4 h-4 text-primary" />
               <span className="text-sm text-muted-foreground">Visitors:</span>
               <span className="text-sm font-semibold text-foreground">

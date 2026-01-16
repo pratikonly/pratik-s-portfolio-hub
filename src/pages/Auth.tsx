@@ -11,7 +11,7 @@ export default function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signIn } = useAuth();
+  const { signIn, signUp } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -19,12 +19,25 @@ export default function Auth() {
     e.preventDefault();
     setLoading(true);
     
+    // Try sign up first, then sign in
+    const { error: signUpError } = await signUp(email, password);
+    
+    if (signUpError && !signUpError.message.includes('already registered')) {
+      // If not already registered error, try sign in
+      const { error: signInError } = await signIn(email, password);
+      if (signInError) {
+        toast({ title: 'Error', description: signInError.message, variant: 'destructive' });
+        setLoading(false);
+        return;
+      }
+    }
+    
+    // If signup succeeded or user exists, sign in
     const { error } = await signIn(email, password);
-
     if (error) {
       toast({ title: 'Error', description: error.message, variant: 'destructive' });
     } else {
-      toast({ title: 'Welcome back!' });
+      toast({ title: 'Welcome!' });
       navigate('/admin');
     }
     setLoading(false);
