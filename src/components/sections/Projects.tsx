@@ -13,25 +13,25 @@ const filters: { value: Category; label: string }[] = [
   { value: 'ui', label: 'UI Design' },
 ];
 
-function ProjectCard({ project, index, isReversed }: { project: Project; index: number; isReversed?: boolean }) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: isReversed ? 50 : -50 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: isReversed ? 50 : -50 }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -30 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       layout
-      className={`group flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-6 lg:gap-8 p-6 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-300`}
+      className="group gradient-border overflow-hidden"
     >
       {/* Image */}
-      <div className="relative w-full lg:w-1/2 h-56 lg:h-64 overflow-hidden rounded-xl">
+      <div className="relative h-48 overflow-hidden">
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60" />
         
         {/* Overlay on hover */}
         <motion.div
@@ -51,16 +51,16 @@ function ProjectCard({ project, index, isReversed }: { project: Project; index: 
       </div>
 
       {/* Content */}
-      <div className={`flex flex-col justify-center w-full lg:w-1/2 ${isReversed ? 'lg:text-right lg:items-end' : 'lg:text-left lg:items-start'}`}>
-        <h3 className="text-2xl font-heading font-semibold mb-3 group-hover:text-primary transition-colors">
+      <div className="p-6 bg-card">
+        <h3 className="text-xl font-heading font-semibold mb-2 group-hover:text-primary transition-colors">
           {project.title}
         </h3>
-        <p className="text-muted-foreground mb-4 leading-relaxed">
+        <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
           {project.description}
         </p>
         
         {/* Tech Stack */}
-        <div className={`flex flex-wrap gap-2 mb-4 ${isReversed ? 'lg:justify-end' : 'lg:justify-start'}`}>
+        <div className="flex flex-wrap gap-2 mb-4">
           {project.tech.map((tech) => (
             <span
               key={tech}
@@ -76,7 +76,7 @@ function ProjectCard({ project, index, isReversed }: { project: Project; index: 
           href={project.liveUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
+          className="inline-flex items-center gap-2 text-primary hover:underline text-sm font-medium"
         >
           View Project <ExternalLink className="w-4 h-4" />
         </a>
@@ -135,13 +135,13 @@ export function Projects() {
           ))}
         </motion.div>
 
-        {/* Projects List - Alternating Layout */}
+        {/* Projects Grid */}
         <motion.div
           layout
-          className="flex flex-col gap-8"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {filteredProjects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} isReversed={index % 2 === 1} />
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </motion.div>
       </div>
