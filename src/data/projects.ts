@@ -47,6 +47,15 @@ export const projects: Project[] = [
   },
   {
     id: 5,
+    title: "NotaForge v2",
+    description: "A simple note-taking app with image and file uploads, color customization, and note management, built with Express and PostgreSQL.",
+    image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-10.png",
+    category: "app",
+    tech: ["HTML", "CSS", "JavaScript"],
+    liveUrl: "https://notaforge.vercel.app/"
+  },
+  {
+    id: 6,
     title: "NotaForge",
     description: "A simple note-taking app with image and file uploads, color customization, and note management, built with Express and PostgreSQL.",
     image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-5.jpg",
@@ -55,7 +64,7 @@ export const projects: Project[] = [
     liveUrl: "https://notepad-main-ftid.onrender.com/"
   },
   {
-    id: 6,
+    id: 7,
     title: "CloudVault v2",
     description: "A simple, community-driven platform to share and explore categorized online resources with password-protected edits.",
     image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-4.PNG",
@@ -64,7 +73,7 @@ export const projects: Project[] = [
     liveUrl: "https://cloudxvault2.vercel.app/"
   },
   {
-    id: 7,
+    id: 8,
     title: "CloudVault",
     description: "DIGITAL ARSENAL v2.0 - Where all Tech related resources are provided for developers and enthusiasts.",
     image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-3.jpg",
@@ -73,7 +82,7 @@ export const projects: Project[] = [
     liveUrl: "https://cloudxvault.vercel.app/"
   },
   {
-    id: 8,
+    id: 9,
     title: "Window Activation Page",
     description: "A Website which provides 2 methods to activate your Windows operating system easily.",
     image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-2.PNG",
@@ -82,7 +91,7 @@ export const projects: Project[] = [
     liveUrl: "https://window-activate.vercel.app/"
   },
   {
-    id: 9,
+    id: 10,
     title: "Portfolio Website",
     description: "A responsive portfolio website showcasing projects, skills, and professional information.",
     image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-1.jpg",
