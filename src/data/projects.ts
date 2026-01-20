@@ -48,7 +48,7 @@ export const projects: Project[] = [
   {
     id: 5,
     title: "NotaForge v2",
-    description: "A simple note-taking app with image and file uploads, color customization, and note management, built with Express and PostgreSQL.",
+    description: "A simple note-taking app with image and file uploads, and note management, built with Express and PostgreSQL.",
     image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-10.png",
     category: "app",
     tech: ["HTML", "CSS", "JavaScript"],
