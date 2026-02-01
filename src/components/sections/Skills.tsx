@@ -143,6 +143,32 @@ const vscodeIcon = (
   </svg>
 );
 
+// Render - 
+render: (
+  <svg
+    viewBox="0 0 24 24"
+    className="w-9 h-9 md:w-10 md:h-10 drop-shadow-sm"
+    xmlns="http://www.w3.org/2000/svg"
+    role="img"
+    aria-label="Render"
+  >
+    <title>Render</title>
+    <path
+      fill="#46E3B7"           // official Render green
+      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+    />
+    <path
+      fill="#000000"           // dark accent for contrast
+      d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
+      opacity="0.25"           // subtle inner shadow/contrast
+    />
+    <path
+      fill="#ffffff"
+      d="M15.5 9.5l-3.5 6-3.5-6h7z"   // simple leaf/chevron shape inside
+    />
+  </svg>
+),
+  
 const iconMap: Record<string, string> = {
   html5: 'fab fa-html5',
   'css3-alt': 'fab fa-css3-alt',
