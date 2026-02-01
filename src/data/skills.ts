@@ -40,8 +40,7 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "Other Skills",
     skills: [
-      { name: "Responsive Design", icon: "mobile" },
-      { name: "Performance", icon: "bolt" },
+      { name: "Responsive Design", icon: "responsive" },
       { name: "GitHub", icon: "github" },
       { name: "VS Code", icon: "vscode" },
       { name: "Vercel", icon: "vercel" },
