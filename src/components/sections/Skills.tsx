@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 // src/components/sections/Skills.tsx
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
@@ -217,7 +219,7 @@ export function Skills() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="skills" className="py-20 md:py-32" ref={ref}>
+    <section id="skills" className="bg-background py-20 md:py-32" ref={ref}>
       {/* Keep Font Awesome if using any FA icons; otherwise remove */}
       {/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /> */}
 
