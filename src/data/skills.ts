@@ -24,7 +24,7 @@ export const skillCategories: SkillCategory[] = [
     title: "Backend Development",
     skills: [
       { name: "Node.js", icon: "node-js" },
-      { name: "Express", icon: "node-js" }, // reusing node-js icon
+      { name: "Express", icon: "express" }, 
       { name: "Next.js", icon: "nextjs" },
     ],
   },
