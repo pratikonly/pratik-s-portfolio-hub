@@ -144,7 +144,7 @@ const vscodeIcon = (
 );
 
 // Movile 
-mobile: (
+'mobile': (
     <svg viewBox="0 0 24 24" className="w-8 h-8 md:w-9 md:h-9">
       <rect width="24" height="24" fill="#000000" rx="4" />
       <path
