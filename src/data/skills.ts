@@ -1,7 +1,6 @@
 export interface Skill {
   name: string;
   icon: string;
-  percent: number;
 }
 
 export interface SkillCategory {
@@ -13,23 +12,36 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "Frontend Development",
     skills: [
-      { name: "HTML5", icon: "html5", percent: 95 },
-      { name: "CSS3", icon: "css3-alt", percent: 90 },
-      { name: "JavaScript", icon: "js", percent: 85 },
-      { name: "React", icon: "react", percent: 80 },
-      { name: "Sass", icon: "sass", percent: 85 },
-      { name: "Bootstrap", icon: "bootstrap", percent: 90 },
+      { name: "HTML5", icon: "html5" },
+      { name: "CSS3", icon: "css3-alt" },
+      { name: "JavaScript", icon: "js" },
+      { name: "React", icon: "react" },
+      { name: "Sass", icon: "sass" },
+      { name: "Bootstrap", icon: "bootstrap" },
+      { name: "Vite", icon: "vite" },
+    ]
+  },
+  {
+    title: "Backend Development",
+    skills: [
+      { name: "Express", icon: "node-js" },
+      { name: "Nest.js", icon: "nestjs" },
     ]
   },
   {
     title: "Tools & Technologies",
     skills: [
-      { name: "Git", icon: "git-alt", percent: 85 },
-      { name: "NPM", icon: "npm", percent: 80 },
-      { name: "Figma", icon: "figma", percent: 75 },
-      { name: "Command Line", icon: "terminal", percent: 70 },
-      { name: "Responsive Design", icon: "mobile", percent: 95 },
-      { name: "Performance", icon: "bolt", percent: 85 },
+      { name: "Git", icon: "git-alt" },
+      { name: "NPM", icon: "npm" },
+      { name: "Figma", icon: "figma" },
+      { name: "Command Line", icon: "terminal" },
+    ]
+  },
+  {
+    title: "Other Skills",
+    skills: [
+      { name: "Responsive Design", icon: "mobile" },
+      { name: "Performance", icon: "bolt" },
     ]
   }
 ];

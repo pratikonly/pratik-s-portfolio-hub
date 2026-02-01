@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Users } from 'lucide-react';
 import { useVisitorCount } from '@/hooks/useVisitorCount';
+import { useAnimatedCounter } from '@/hooks/useAnimatedCounter';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
@@ -17,7 +18,8 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const { count } = useVisitorCount();
+  const { count, loading } = useVisitorCount();
+  const animatedCount = useAnimatedCounter(loading ? 0 : count, 2000);
   const location = useLocation();
 
   useEffect(() => {
@@ -116,15 +118,15 @@ export function Header() {
             <div className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border">
               <Users className="w-4 h-4 text-primary" />
               <span className="text-sm text-muted-foreground">Visitors:</span>
-              <span className="text-sm font-semibold text-foreground">
-                {count.toLocaleString()}
+              <span className="text-sm font-semibold text-foreground tabular-nums">
+                {animatedCount.toLocaleString()}
               </span>
             </div>
 
             {/* Mobile: Logo Left, Visitor Center, Menu Right */}
             <div className="md:hidden flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary/50 border border-border absolute left-1/2 -translate-x-1/2">
               <Users className="w-3.5 h-3.5 text-primary" />
-              <span className="text-xs font-semibold">{count.toLocaleString()}</span>
+              <span className="text-xs font-semibold tabular-nums">{animatedCount.toLocaleString()}</span>
             </div>
 
             {/* Mobile Menu Button - Right */}
