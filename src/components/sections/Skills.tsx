@@ -162,7 +162,6 @@ const iconMap: Record<string, string> = {
   npm: 'fab fa-npm',
   figma: 'fab fa-figma',
   terminal: 'fas fa-terminal',
-  mobile: 'fas fa-mobile-alt',
   bolt: 'fas fa-bolt',
 };
 
