@@ -25,7 +25,7 @@ export const skillCategories: SkillCategory[] = [
     title: "Backend Development",
     skills: [
       { name: "Express", icon: "node-js" },
-      { name: "Nest.js", icon: "nestjs" },
+      { name: "Next.js", icon: "nextjs" },
     ]
   },
   {
@@ -42,6 +42,10 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       { name: "Responsive Design", icon: "mobile" },
       { name: "Performance", icon: "bolt" },
+      { name: "GitHub", icon: "github" },
+      { name: "VS Code", icon: "vscode" },
+      { name: "Vercel", icon: "vercel" },
+      { name: "Render", icon: "render" },
     ]
   }
 ];
