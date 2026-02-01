@@ -15,18 +15,18 @@ export const skillCategories: SkillCategory[] = [
       { name: "HTML5", icon: "html5" },
       { name: "CSS3", icon: "css3-alt" },
       { name: "JavaScript", icon: "js" },
-      { name: "React", icon: "react" },
-      { name: "Sass", icon: "sass" },
-      { name: "Bootstrap", icon: "bootstrap" },
+      { name: "TypeScript", icon: "typescript" },
+      { name: "Tailwind CSS", icon: "tailwind" },
       { name: "Vite", icon: "vite" },
-    ]
+    ],
   },
   {
     title: "Backend Development",
     skills: [
-      { name: "Express", icon: "node-js" },
+      { name: "Node.js", icon: "node-js" },
+      { name: "Express", icon: "node-js" }, // reusing node-js icon
       { name: "Next.js", icon: "nextjs" },
-    ]
+    ],
   },
   {
     title: "Tools & Technologies",
@@ -35,7 +35,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "NPM", icon: "npm" },
       { name: "Figma", icon: "figma" },
       { name: "Command Line", icon: "terminal" },
-    ]
+    ],
   },
   {
     title: "Other Skills",
