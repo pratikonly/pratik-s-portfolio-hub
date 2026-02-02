@@ -3,14 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   Users, MessageSquare, LogOut, Trash2, Eye, EyeOff, 
-  Monitor, Smartphone, Tablet, Globe, Clock, MapPin,
-  Chrome, RefreshCw, TrendingUp, Calendar
+  Monitor, Smartphone, Tablet, Globe, Clock,
+  Chrome, RefreshCw, TrendingUp, Calendar, FolderKanban
 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ProjectsManager } from '@/components/admin/ProjectsManager';
 
 interface Feedback {
   id: string;
@@ -251,11 +252,18 @@ export default function Admin() {
           </motion.div>
         </div>
 
-        <Tabs defaultValue="visitors" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 max-w-md">
+        <Tabs defaultValue="projects" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-3 max-w-md">
+            <TabsTrigger value="projects">Projects</TabsTrigger>
             <TabsTrigger value="visitors">Visitors</TabsTrigger>
             <TabsTrigger value="feedback">Feedback</TabsTrigger>
           </TabsList>
+
+          <TabsContent value="projects">
+            <div className="bg-card border border-border rounded-xl p-6">
+              <ProjectsManager />
+            </div>
+          </TabsContent>
 
           <TabsContent value="visitors" className="space-y-6">
             {/* Device/Browser/OS Stats */}

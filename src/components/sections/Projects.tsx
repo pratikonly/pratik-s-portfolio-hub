@@ -1,8 +1,9 @@
 import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
-import { projects, type Project } from '@/data/projects';
+import { useProjects, type Project } from '@/hooks/useProjects';
 import { cn } from '@/lib/utils';
+import { Skeleton } from '@/components/ui/skeleton';
 
 type Category = 'all' | 'website' | 'app' | 'ui';
 
@@ -26,7 +27,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       {/* Image */}
       <div className="relative h-48 overflow-hidden">
         <img
-          src={project.image}
+          src={project.image_url || '/placeholder.svg'}
           alt={project.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           loading="lazy"
@@ -40,7 +41,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           className="absolute inset-0 bg-primary/20 backdrop-blur-sm flex items-center justify-center"
         >
           <a
-            href={project.liveUrl}
+            href={project.live_url}
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium flex items-center gap-2 hover:bg-primary/90 transition-colors"
@@ -73,7 +74,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
         {/* Link */}
         <a
-          href={project.liveUrl}
+          href={project.live_url}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-primary hover:underline text-sm font-medium"
@@ -85,14 +86,33 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   );
 }
 
+function ProjectSkeleton() {
+  return (
+    <div className="gradient-border overflow-hidden">
+      <Skeleton className="h-48 w-full" />
+      <div className="p-6 bg-card space-y-3">
+        <Skeleton className="h-6 w-3/4" />
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-2/3" />
+        <div className="flex gap-2">
+          <Skeleton className="h-6 w-16 rounded-full" />
+          <Skeleton className="h-6 w-16 rounded-full" />
+          <Skeleton className="h-6 w-16 rounded-full" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function Projects() {
   const [activeFilter, setActiveFilter] = useState<Category>('all');
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { data: projects, isLoading } = useProjects();
 
   const filteredProjects = activeFilter === 'all'
     ? projects
-    : projects.filter((p) => p.category === activeFilter);
+    : projects?.filter((p) => p.category === activeFilter);
 
   return (
     <section id="projects" className="py-20 md:py-32 bg-secondary/30" ref={ref}>
@@ -140,9 +160,20 @@ export function Projects() {
           layout
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {filteredProjects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
-          ))}
+          {isLoading ? (
+            <>
+              <ProjectSkeleton />
+              <ProjectSkeleton />
+              <ProjectSkeleton />
+              <ProjectSkeleton />
+              <ProjectSkeleton />
+              <ProjectSkeleton />
+            </>
+          ) : (
+            filteredProjects?.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} />
+            ))
+          )}
         </motion.div>
       </div>
     </section>
