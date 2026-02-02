@@ -22,7 +22,7 @@ export function Footer() {
           </motion.button>
 
           <p className="text-muted-foreground text-sm text-center">
-            © {new Date().getFullYear()} Pratik. All Rights Reserved.
+            © 2024 Pratik. All Rights Reserved.
           </p>
           
           {/* Empty div for balance */}
