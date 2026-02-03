@@ -2,7 +2,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
 Deno.serve(async (req) => {
@@ -21,17 +21,11 @@ Deno.serve(async (req) => {
       );
     }
 
-    const rawUrl = String(url).trim();
-    const normalizedUrl = rawUrl.startsWith('http://') || rawUrl.startsWith('https://')
-      ? rawUrl
-      : `https://${rawUrl}`;
-
-    console.log(`Capturing screenshot for URL: ${normalizedUrl}`);
+    console.log(`Capturing screenshot for URL: ${url}`);
 
     // Use thum.io free service for screenshots
     // Format: https://image.thum.io/get/width/1280/crop/720/[URL]
-    // NOTE: thum.io expects the raw URL in the path; encodeURI preserves the needed "://" + "/" parts.
-    const screenshotUrl = `https://image.thum.io/get/width/1280/crop/720/${encodeURI(normalizedUrl)}`;
+    const screenshotUrl = `https://image.thum.io/get/width/1280/crop/720/${encodeURIComponent(url)}`;
     
     // Verify the URL is accessible by making a HEAD request
     try {
