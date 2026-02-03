@@ -21,11 +21,17 @@ Deno.serve(async (req) => {
       );
     }
 
-    console.log(`Capturing screenshot for URL: ${url}`);
+    const rawUrl = String(url).trim();
+    const normalizedUrl = rawUrl.startsWith('http://') || rawUrl.startsWith('https://')
+      ? rawUrl
+      : `https://${rawUrl}`;
+
+    console.log(`Capturing screenshot for URL: ${normalizedUrl}`);
 
     // Use thum.io free service for screenshots
     // Format: https://image.thum.io/get/width/1280/crop/720/[URL]
-    const screenshotUrl = `https://image.thum.io/get/width/1280/crop/720/${encodeURIComponent(url)}`;
+    // NOTE: thum.io expects the raw URL in the path; encodeURI preserves the needed "://" + "/" parts.
+    const screenshotUrl = `https://image.thum.io/get/width/1280/crop/720/${encodeURI(normalizedUrl)}`;
     
     // Verify the URL is accessible by making a HEAD request
     try {
