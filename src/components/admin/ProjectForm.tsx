@@ -133,7 +133,21 @@ export function ProjectForm({ project, onClose }: ProjectFormProps) {
             </Button>
           </div>
           <p className="text-xs text-muted-foreground mt-1">
-            Screenshot will be captured automatically when you enter a URL
+            Screenshot will be captured automatically when you enter a URL (waits 5s for page to load)
+          </p>
+        </div>
+
+        <div>
+          <Label htmlFor="imageUrl">Thumbnail URL (optional)</Label>
+          <Input
+            id="imageUrl"
+            type="url"
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+            placeholder="https://example.com/image.png or leave empty for auto-capture"
+          />
+          <p className="text-xs text-muted-foreground mt-1">
+            Enter a direct image URL to override auto-capture
           </p>
         </div>
 

@@ -29,9 +29,10 @@ Deno.serve(async (req) => {
     console.log(`Capturing screenshot for URL: ${normalizedUrl}`);
 
     // Use thum.io free service for screenshots
-    // Format: https://image.thum.io/get/width/1280/crop/720/[URL]
+    // Format: https://image.thum.io/get/width/1280/crop/720/wait/5/[URL]
+    // wait/5 tells thum.io to wait 5 seconds after page load before capturing
     // NOTE: thum.io expects the raw URL in the path; encodeURI preserves the needed "://" + "/" parts.
-    const screenshotUrl = `https://image.thum.io/get/width/1280/crop/720/${encodeURI(normalizedUrl)}`;
+    const screenshotUrl = `https://image.thum.io/get/width/1280/crop/720/wait/5/${encodeURI(normalizedUrl)}`;
     
     // Verify the URL is accessible by making a HEAD request
     try {
