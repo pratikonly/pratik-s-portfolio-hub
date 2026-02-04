@@ -7,7 +7,7 @@ import { ProjectForm } from './ProjectForm';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export function ProjectsManager() {
-  const { data: projects, isLoading } = useProjects();
+  const { data: projects, isLoading, isError, refetch } = useProjects();
   const deleteProject = useDeleteProject();
   const captureScreenshot = useCaptureScreenshot();
   const [editingProject, setEditingProject] = useState<Project | null>(null);
@@ -35,6 +35,15 @@ export function ProjectsManager() {
         {[1, 2, 3].map((i) => (
           <Skeleton key={i} className="h-24 w-full" />
         ))}
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-destructive mb-4">Failed to load projects</p>
+        <Button onClick={() => refetch()}>Try Again</Button>
       </div>
     );
   }

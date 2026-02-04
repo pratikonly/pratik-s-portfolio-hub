@@ -30,6 +30,9 @@ export function useProjects() {
       if (error) throw error;
       return data as Project[];
     },
+    staleTime: 1000 * 60 * 5, // 5 minutes
+    retry: 2,
+    retryDelay: 1000,
   });
 }
 
