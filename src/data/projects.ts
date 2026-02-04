@@ -1,102 +1,113 @@
-export interface Project {
-  id: number;
+export interface FallbackProject {
+  id: string;
   title: string;
   description: string;
-  image: string;
+  image_url: string;
   category: 'website' | 'app' | 'ui';
   tech: string[];
-  liveUrl: string;
+  live_url: string;
+  display_order: number;
 }
 
-export const projects: Project[] = [
+export const fallbackProjects: FallbackProject[] = [
   {
-    id: 1,
+    id: "fallback-1",
     title: "PirateOne",
     description: "Advanced web-based entertainment platform that lets users browse and watch movies, TV shows, and anime with search, watchlist, and history features.",
-    image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-9.png",
+    image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-9.png",
     category: "app",
     tech: ["HTML", "CSS", "JavaScript"],
-    liveUrl: "https://piratexone.vercel.app/"
+    live_url: "https://piratexone.vercel.app/",
+    display_order: 0
   },
   {
-    id: 2,
+    id: "fallback-2",
     title: "Nest",
     description: "A minimalist real-time chat app with user login, clean interface, and options to clear chat history.",
-    image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-7.png",
+    image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-7.png",
     category: "app",
     tech: ["HTML", "CSS", "JavaScript"],
-    liveUrl: "https://nestxmain.vercel.app/"
+    live_url: "https://nestxmain.vercel.app/",
+    display_order: 1
   },
   {
-    id: 3,
+    id: "fallback-3",
     title: "Exciler - Burner Mails",
     description: "A free temporary email service that creates instant burner or custom addresses with an auto-deleting inbox—no registration required.",
-    image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-8.PNG",
+    image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-8.PNG",
     category: "app",
     tech: ["HTML", "CSS", "JavaScript"],
-    liveUrl: "https://exciler.vercel.app/"
+    live_url: "https://exciler.vercel.app/",
+    display_order: 2
   },
   {
-    id: 4,
+    id: "fallback-4",
     title: "Devtri Seczone Private Limited",
     description: "A responsive Empowering Industries website with modern design and professional layout.",
-    image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-6.jpg",
+    image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-6.jpg",
     category: "website",
     tech: ["HTML", "CSS", "JavaScript"],
-    liveUrl: "https://devtriseczone.vercel.app/"
+    live_url: "https://devtriseczone.vercel.app/",
+    display_order: 3
   },
   {
-    id: 5,
+    id: "fallback-5",
     title: "NotaForge v2",
     description: "A simple note-taking app with image and file uploads, and note management, built with Express and PostgreSQL.",
-    image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-10.png",
+    image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-10.png",
     category: "app",
     tech: ["HTML", "CSS", "JavaScript"],
-    liveUrl: "https://notaforge.vercel.app/"
+    live_url: "https://notaforge.vercel.app/",
+    display_order: 4
   },
   {
-    id: 6,
+    id: "fallback-6",
     title: "NotaForge",
     description: "A simple note-taking app with image and file uploads, color customization, and note management, built with Express and PostgreSQL.",
-    image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-5.jpg",
+    image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-5.jpg",
     category: "app",
     tech: ["HTML", "CSS", "JavaScript"],
-    liveUrl: "https://notepad-main-ftid.onrender.com/"
+    live_url: "https://notepad-main-ftid.onrender.com/",
+    display_order: 5
   },
   {
-    id: 7,
+    id: "fallback-7",
     title: "CloudVault v2",
     description: "A simple, community-driven platform to share and explore categorized online resources with password-protected edits.",
-    image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-4.PNG",
+    image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-4.PNG",
     category: "app",
     tech: ["HTML", "CSS", "JavaScript"],
-    liveUrl: "https://cloudxvault2.vercel.app/"
+    live_url: "https://cloudxvault2.vercel.app/",
+    display_order: 6
   },
   {
-    id: 8,
+    id: "fallback-8",
     title: "CloudVault",
     description: "DIGITAL ARSENAL v2.0 - Where all Tech related resources are provided for developers and enthusiasts.",
-    image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-3.jpg",
+    image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-3.jpg",
     category: "ui",
     tech: ["JavaScript", "HTML", "CSS"],
-    liveUrl: "https://cloudxvault.vercel.app/"
+    live_url: "https://cloudxvault.vercel.app/",
+    display_order: 7
   },
   {
-    id: 9,
+    id: "fallback-9",
     title: "Window Activation Page",
     description: "A Website which provides 2 methods to activate your Windows operating system easily.",
-    image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-2.PNG",
+    image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-2.PNG",
     category: "website",
     tech: ["HTML", "CSS", "JavaScript"],
-    liveUrl: "https://window-activate.vercel.app/"
+    live_url: "https://window-activate.vercel.app/",
+    display_order: 8
   },
   {
-    id: 10,
+    id: "fallback-10",
     title: "Portfolio Website",
     description: "A responsive portfolio website showcasing projects, skills, and professional information.",
-    image: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-1.jpg",
+    image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-1.jpg",
     category: "website",
     tech: ["HTML", "CSS", "JavaScript"],
-    liveUrl: "https://pratikx.vercel.app/"
+    live_url: "https://pratikx.vercel.app/",
+    display_order: 9
   }
 ];

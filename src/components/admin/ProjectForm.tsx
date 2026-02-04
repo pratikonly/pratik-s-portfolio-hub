@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { useCreateProject, useUpdateProject, useCaptureScreenshot, type Project, type ProjectInsert } from '@/hooks/useProjects';
+import { useCreateProject, useUpdateProject, type Project, type ProjectInsert } from '@/hooks/useProjects';
 
 interface ProjectFormProps {
   project?: Project | null;
@@ -15,7 +15,6 @@ interface ProjectFormProps {
 export function ProjectForm({ project, onClose }: ProjectFormProps) {
   const createProject = useCreateProject();
   const updateProject = useUpdateProject();
-  const captureScreenshot = useCaptureScreenshot();
   
   const [title, setTitle] = useState(project?.title || '');
   const [description, setDescription] = useState(project?.description || '');
@@ -24,28 +23,8 @@ export function ProjectForm({ project, onClose }: ProjectFormProps) {
   const [techInput, setTechInput] = useState(project?.tech.join(', ') || '');
   const [displayOrder, setDisplayOrder] = useState(project?.display_order || 0);
   const [imageUrl, setImageUrl] = useState(project?.image_url || '');
-  const [isCapturing, setIsCapturing] = useState(false);
 
   const isEditing = !!project;
-
-  const handleCaptureScreenshot = async () => {
-    if (!liveUrl) return;
-    setIsCapturing(true);
-    try {
-      const result = await captureScreenshot.mutateAsync({ url: liveUrl });
-      if (result.screenshotUrl) {
-        setImageUrl(result.screenshotUrl);
-      }
-    } finally {
-      setIsCapturing(false);
-    }
-  };
-
-  const handleUrlBlur = () => {
-    if (liveUrl && !imageUrl && !isEditing) {
-      handleCaptureScreenshot();
-    }
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -89,7 +68,7 @@ export function ProjectForm({ project, onClose }: ProjectFormProps) {
 
       <div className="grid gap-4">
         <div>
-          <Label htmlFor="title">Title</Label>
+          <Label htmlFor="title">Title *</Label>
           <Input
             id="title"
             value={title}
@@ -100,7 +79,7 @@ export function ProjectForm({ project, onClose }: ProjectFormProps) {
         </div>
 
         <div>
-          <Label htmlFor="description">Description</Label>
+          <Label htmlFor="description">Description *</Label>
           <Textarea
             id="description"
             value={description}
@@ -112,42 +91,29 @@ export function ProjectForm({ project, onClose }: ProjectFormProps) {
         </div>
 
         <div>
-          <Label htmlFor="liveUrl">Live URL</Label>
-          <div className="flex gap-2">
-            <Input
-              id="liveUrl"
-              type="url"
-              value={liveUrl}
-              onChange={(e) => setLiveUrl(e.target.value)}
-              onBlur={handleUrlBlur}
-              placeholder="https://example.com"
-              required
-            />
-            <Button 
-              type="button" 
-              variant="outline" 
-              onClick={handleCaptureScreenshot}
-              disabled={!liveUrl || isCapturing}
-            >
-              {isCapturing ? 'Capturing...' : 'Capture'}
-            </Button>
-          </div>
-          <p className="text-xs text-muted-foreground mt-1">
-            Screenshot will be captured automatically when you enter a URL (waits 5s for page to load)
-          </p>
+          <Label htmlFor="liveUrl">Live URL *</Label>
+          <Input
+            id="liveUrl"
+            type="url"
+            value={liveUrl}
+            onChange={(e) => setLiveUrl(e.target.value)}
+            placeholder="https://example.com"
+            required
+          />
         </div>
 
         <div>
-          <Label htmlFor="imageUrl">Thumbnail URL (optional)</Label>
+          <Label htmlFor="imageUrl">Thumbnail URL *</Label>
           <Input
             id="imageUrl"
             type="url"
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
-            placeholder="https://example.com/image.png or leave empty for auto-capture"
+            placeholder="https://example.com/thumbnail.png"
+            required
           />
           <p className="text-xs text-muted-foreground mt-1">
-            Enter a direct image URL to override auto-capture
+            Paste a direct image URL for the project thumbnail
           </p>
         </div>
 
@@ -159,6 +125,9 @@ export function ProjectForm({ project, onClose }: ProjectFormProps) {
                 src={imageUrl}
                 alt="Project preview"
                 className="w-full h-40 object-cover"
+                onError={(e) => {
+                  e.currentTarget.src = '/placeholder.svg';
+                }}
               />
             </div>
           </div>

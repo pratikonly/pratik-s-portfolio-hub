@@ -1,27 +1,16 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, RefreshCw, Pencil, Trash2, ExternalLink, Image } from 'lucide-react';
+import { Plus, Pencil, Trash2, ExternalLink, Image } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useProjects, useDeleteProject, useCaptureScreenshot, type Project } from '@/hooks/useProjects';
+import { useProjects, useDeleteProject, type Project } from '@/hooks/useProjects';
 import { ProjectForm } from './ProjectForm';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export function ProjectsManager() {
   const { data: projects, isLoading, isError, refetch } = useProjects();
   const deleteProject = useDeleteProject();
-  const captureScreenshot = useCaptureScreenshot();
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [showAddForm, setShowAddForm] = useState(false);
-  const [updatingScreenshot, setUpdatingScreenshot] = useState<string | null>(null);
-
-  const handleUpdateScreenshot = async (project: Project) => {
-    setUpdatingScreenshot(project.id);
-    try {
-      await captureScreenshot.mutateAsync({ url: project.live_url, projectId: project.id });
-    } finally {
-      setUpdatingScreenshot(null);
-    }
-  };
 
   const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this project?')) {
@@ -145,15 +134,6 @@ export function ProjectsManager() {
 
               {/* Actions */}
               <div className="flex flex-col gap-2 shrink-0">
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={() => handleUpdateScreenshot(project)}
-                  disabled={updatingScreenshot === project.id}
-                  title="Update Screenshot"
-                >
-                  <RefreshCw className={`w-4 h-4 ${updatingScreenshot === project.id ? 'animate-spin' : ''}`} />
-                </Button>
                 <Button
                   size="sm"
                   variant="outline"
