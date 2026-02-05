@@ -29,7 +29,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <img
           src={project.image_url || '/placeholder.svg'}
           alt={project.title}
-          className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
           onError={(e) => {
             e.currentTarget.src = '/placeholder.svg';
