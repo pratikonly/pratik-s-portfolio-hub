@@ -25,7 +25,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       className="group gradient-border overflow-hidden"
     >
       {/* Image */}
-      <div className="relative h-48 overflow-hidden bg-secondary">
+      <div className="relative h-40 overflow-hidden bg-secondary">
         <img
           src={project.image_url || '/placeholder.svg'}
           alt={project.title}
