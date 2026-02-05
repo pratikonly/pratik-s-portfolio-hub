@@ -102,12 +102,12 @@ export const fallbackProjects: FallbackProject[] = [
   },
   {
     id: "fallback-10",
-    title: "Portfolio Website",
+    title: "Pratik Portfolio",
     description: "A responsive portfolio website showcasing projects, skills, and professional information.",
-    image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-1.jpg",
+    image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-1.PNG",
     category: "website",
     tech: ["HTML", "CSS", "JavaScript"],
-    live_url: "https://pratikx.vercel.app/",
+    live_url: "http://portfolio-bypratik.vercel.app/",
     display_order: 9
   }
 ];
