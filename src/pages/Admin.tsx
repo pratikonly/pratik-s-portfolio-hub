@@ -4,14 +4,13 @@ import { motion } from 'framer-motion';
 import { 
   Users, MessageSquare, LogOut, Trash2, Eye, EyeOff, 
   Monitor, Smartphone, Tablet, Globe, Clock,
-  Chrome, RefreshCw, TrendingUp, Calendar, FolderKanban
+  Chrome, RefreshCw, TrendingUp
 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ProjectsManager } from '@/components/admin/ProjectsManager';
 
 interface Feedback {
   id: string;
@@ -252,18 +251,11 @@ export default function Admin() {
           </motion.div>
         </div>
 
-        <Tabs defaultValue="projects" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3 max-w-md">
-            <TabsTrigger value="projects">Projects</TabsTrigger>
+        <Tabs defaultValue="visitors" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-2 max-w-md">
             <TabsTrigger value="visitors">Visitors</TabsTrigger>
             <TabsTrigger value="feedback">Feedback</TabsTrigger>
           </TabsList>
-
-          <TabsContent value="projects">
-            <div className="bg-card border border-border rounded-xl p-6">
-              <ProjectsManager />
-            </div>
-          </TabsContent>
 
           <TabsContent value="visitors" className="space-y-6">
             {/* Device/Browser/OS Stats */}
@@ -419,7 +411,7 @@ export default function Admin() {
                           <p className="font-medium text-primary mb-1">{fb.subject}</p>
                           <p className="text-muted-foreground text-sm whitespace-pre-wrap">{fb.message}</p>
                           <div className="flex items-center gap-1 text-xs text-muted-foreground mt-2">
-                            <Calendar className="w-3 h-3" />
+                            <Clock className="w-3 h-3" />
                             {new Date(fb.created_at).toLocaleString()}
                           </div>
                         </div>
