@@ -22,12 +22,12 @@ export const fallbackProjects: FallbackProject[] = [
   },
   {
     id: "fallback-2",
-    title: "Nest",
-    description: "A minimalist real-time chat app with user login, clean interface, and options to clear chat history.",
-    image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-7.png",
-    category: "app",
-    tech: ["HTML", "CSS", "JavaScript"],
-    live_url: "https://nestxmain.vercel.app/",
+    title: "Black Pearl AI",
+    description: "An AI-powered assistant that helps users with intelligent conversations, code generation, and creative tasks using advanced language models.",
+    image_url: "/images/blackpearl-thumbnail.png",
+    category: "website",
+    tech: ["Vite", "TypeScript", "HTML", "CSS", "JavaScript"],
+    live_url: "https://blackxpearl.vercel.app/",
     display_order: 1
   },
   {
@@ -39,6 +39,16 @@ export const fallbackProjects: FallbackProject[] = [
     tech: ["HTML", "CSS", "JavaScript"],
     live_url: "https://exciler.vercel.app/",
     display_order: 2
+  },
+  {
+    id: "fallback-4",
+    title: "Nest",
+    description: "A minimalist real-time chat app with user login, clean interface, and options to clear chat history.",
+    image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-7.png",
+    category: "app",
+    tech: ["HTML", "CSS", "JavaScript"],
+    live_url: "https://nestxmain.vercel.app/",
+    display_order: 3
   },
   {
     id: "fallback-4",
