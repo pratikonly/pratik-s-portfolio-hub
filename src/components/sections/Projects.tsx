@@ -25,17 +25,17 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       className="group gradient-border overflow-hidden"
     >
       {/* Image */}
-      <div className="relative h-48 overflow-hidden">
+      <div className="relative h-48 overflow-hidden bg-secondary">
         <img
           src={project.image_url || '/placeholder.svg'}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
           onError={(e) => {
             e.currentTarget.src = '/placeholder.svg';
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-40" />
         
         {/* Overlay on hover */}
         <motion.div
