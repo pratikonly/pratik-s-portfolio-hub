@@ -216,6 +216,9 @@ export function Projects() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mt-2">
             Recent Projects
           </h2>
+          <p className="text-muted-foreground mt-3">
+            {projects?.length || 0} Projects
+          </p>
         </motion.div>
 
         {/* Filters */}
