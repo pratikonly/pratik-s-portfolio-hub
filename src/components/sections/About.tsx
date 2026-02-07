@@ -72,7 +72,7 @@ export function About() {
           src="/videos/background.mp4"
         />
         {/* Blur overlay */}
-        <div className="absolute inset-0 backdrop-blur-sm" />
+        <div className="absolute inset-0" />
         {/* Dark fade overlay */}
         <div className="absolute inset-0 bg-background/60" />
         {/* Gradient edges */}
