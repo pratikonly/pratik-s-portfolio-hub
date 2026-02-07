@@ -217,11 +217,27 @@ export function Skills() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="skills" className="py-20 md:py-32" ref={ref}>
-      {/* Keep Font Awesome if using any FA icons; otherwise remove */}
-      {/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /> */}
+    <section id="skills" className="py-20 md:py-32 relative overflow-hidden" ref={ref}>
+      {/* Video background with blur and fade */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Video element - Place your video at: public/videos/background.mp4 */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          src="/videos/background.mp4"
+        />
+        {/* Blur overlay */}
+        <div className="absolute inset-0 backdrop-blur-lg" />
+        {/* Dark fade overlay */}
+        <div className="absolute inset-0 bg-background/85" />
+        {/* Gradient edges */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+      </div>
 
-      <div className="w-full md:w-[80%] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full md:w-[80%] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}

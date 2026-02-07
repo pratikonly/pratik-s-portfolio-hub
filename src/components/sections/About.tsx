@@ -60,6 +60,25 @@ export function About() {
 
   return (
     <section id="about" className="py-20 md:py-32 relative overflow-hidden" ref={ref}>
+      {/* Video background with blur and fade */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Video element - Place your video at: public/videos/background.mp4 */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          src="/videos/background.mp4"
+        />
+        {/* Blur overlay */}
+        <div className="absolute inset-0 backdrop-blur-lg" />
+        {/* Dark fade overlay */}
+        <div className="absolute inset-0 bg-background/85" />
+        {/* Gradient edges */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+      </div>
+      
       <div className="w-full md:w-[80%] mx-auto px-4 relative z-10">
         {/* Section Header */}
         <motion.div
