@@ -83,7 +83,64 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-32 bg-secondary/30 relative overflow-hidden" ref={ref}>
+    <section id="contact" className="py-20 md:py-32 relative overflow-hidden" ref={ref}>
+      {/* Animated background */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Base gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-secondary/30 to-background" />
+        
+        {/* Floating orbs */}
+        <motion.div
+          animate={{
+            x: [0, 80, 0],
+            y: [0, -60, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 right-1/4 w-[450px] h-[450px] bg-primary/12 rounded-full blur-[90px]"
+        />
+        <motion.div
+          animate={{
+            x: [0, -70, 0],
+            y: [0, 70, 0],
+            scale: [1, 0.85, 1],
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 left-1/4 w-[550px] h-[550px] bg-accent/12 rounded-full blur-[110px]"
+        />
+        
+        {/* Radial highlight */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-primary/5 rounded-full blur-[150px]" />
+        
+        {/* Animated particles */}
+        {[...Array(10)].map((_, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              y: [0, -25, 0],
+              x: [0, Math.cos(i) * 15, 0],
+              opacity: [0.2, 0.6, 0.2],
+            }}
+            transition={{
+              duration: 4 + i * 0.6,
+              repeat: Infinity,
+              delay: i * 0.25,
+            }}
+            className="absolute w-2 h-2 bg-primary/35 rounded-full"
+            style={{
+              left: `${5 + i * 10}%`,
+              top: `${25 + (i % 4) * 20}%`,
+            }}
+          />
+        ))}
+        
+        {/* Subtle grid */}
+        <div className="absolute inset-0 opacity-[0.01]" style={{
+          backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
+          backgroundSize: '70px 70px',
+        }} />
+      </div>
+      
       <div className="w-full md:w-[80%] mx-auto px-4 relative z-10">
         {/* Section Header */}
         <motion.div

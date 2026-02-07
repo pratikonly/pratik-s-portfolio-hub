@@ -148,8 +148,61 @@ export function Projects() {
   const hasMoreProjects = (filteredProjects?.length || 0) > INITIAL_VISIBLE_COUNT;
 
   return (
-    <section id="projects" className="py-20 md:py-32 bg-secondary/30" ref={ref}>
-      <div className="w-full md:w-[80%] mx-auto px-4">
+    <section id="projects" className="py-20 md:py-32 relative overflow-hidden" ref={ref}>
+      {/* Animated background */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Base gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
+        
+        {/* Floating orbs */}
+        <motion.div
+          animate={{
+            x: [0, 60, 0],
+            y: [0, -40, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/3 left-1/6 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[80px]"
+        />
+        <motion.div
+          animate={{
+            x: [0, -50, 0],
+            y: [0, 50, 0],
+            scale: [1, 0.9, 1],
+          }}
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/3 right-1/6 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px]"
+        />
+        
+        {/* Particle field */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.3, 0.7, 0.3],
+            }}
+            transition={{
+              duration: 5 + i,
+              repeat: Infinity,
+              delay: i * 0.4,
+            }}
+            className="absolute w-2 h-2 bg-primary/40 rounded-full"
+            style={{
+              left: `${10 + i * 12}%`,
+              top: `${20 + (i % 3) * 30}%`,
+            }}
+          />
+        ))}
+        
+        {/* Grid overlay */}
+        <div className="absolute inset-0 opacity-[0.015]" style={{
+          backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
+          backgroundSize: '80px 80px',
+        }} />
+      </div>
+      
+      <div className="w-full md:w-[80%] mx-auto px-4 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
