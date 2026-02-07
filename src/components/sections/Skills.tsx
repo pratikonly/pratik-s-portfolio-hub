@@ -230,9 +230,9 @@ export function Skills() {
           src="/videos/background.mp4"
         />
         {/* Blur overlay */}
-        <div className="absolute inset-0 backdrop-blur-lg" />
+        <div className="absolute inset-0 backdrop-blur-sm" />
         {/* Dark fade overlay */}
-        <div className="absolute inset-0 bg-background/85" />
+        <div className="absolute inset-0 bg-background/60" />
         {/* Gradient edges */}
         <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
       </div>
