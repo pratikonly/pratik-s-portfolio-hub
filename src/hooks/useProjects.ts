@@ -11,6 +11,7 @@ export interface Project {
   display_order: number;
   created_at: string;
   updated_at: string;
+  coming_soon?: boolean;
 }
 
 // Convert fallback projects to match Project interface
@@ -21,6 +22,7 @@ function normalizeProjects(fallback: FallbackProject[]): Project[] {
     image_url: p.image_url,
     created_at: now,
     updated_at: now,
+    coming_soon: p.coming_soon,
   }));
 }
 

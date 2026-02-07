@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { ExternalLink, Clock, ChevronDown, ChevronUp } from 'lucide-react';
 import { useProjects, type Project } from '@/hooks/useProjects';
 import { cn } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -14,7 +14,11 @@ const filters: { value: Category; label: string }[] = [
   { value: 'ui', label: 'UI Design' },
 ];
 
+const INITIAL_VISIBLE_COUNT = 9;
+
 function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const isComingSoon = project.coming_soon;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -22,7 +26,10 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       exit={{ opacity: 0, y: -30 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       layout
-      className="group gradient-border overflow-hidden"
+      className={cn(
+        "group gradient-border overflow-hidden",
+        isComingSoon && "opacity-90"
+      )}
     >
       {/* Image */}
       <div className="relative h-40 overflow-hidden bg-secondary">
@@ -37,21 +44,31 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-40" />
         
+        {/* Coming Soon Badge */}
+        {isComingSoon && (
+          <div className="absolute top-3 right-3 px-3 py-1 bg-primary/90 text-primary-foreground rounded-full text-xs font-medium flex items-center gap-1">
+            <Clock className="w-3 h-3" />
+            Coming Soon
+          </div>
+        )}
+        
         {/* Overlay on hover */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 1 }}
-          className="absolute inset-0 bg-primary/20 backdrop-blur-sm flex items-center justify-center"
-        >
-          <a
-            href={project.live_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium flex items-center gap-2 hover:bg-primary/90 transition-colors"
+        {!isComingSoon && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileHover={{ opacity: 1 }}
+            className="absolute inset-0 bg-primary/20 backdrop-blur-sm flex items-center justify-center"
           >
-            Live Demo <ExternalLink className="w-4 h-4" />
-          </a>
-        </motion.div>
+            <a
+              href={project.live_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium flex items-center gap-2 hover:bg-primary/90 transition-colors"
+            >
+              Live Demo <ExternalLink className="w-4 h-4" />
+            </a>
+          </motion.div>
+        )}
       </div>
 
       {/* Content */}
@@ -76,14 +93,20 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </div>
 
         {/* Link */}
-        <a
-          href={project.live_url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-primary hover:underline text-sm font-medium"
-        >
-          View Project <ExternalLink className="w-4 h-4" />
-        </a>
+        {isComingSoon ? (
+          <span className="inline-flex items-center gap-2 text-muted-foreground text-sm font-medium">
+            <Clock className="w-4 h-4" /> In Development
+          </span>
+        ) : (
+          <a
+            href={project.live_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-primary hover:underline text-sm font-medium"
+          >
+            View Project <ExternalLink className="w-4 h-4" />
+          </a>
+        )}
       </div>
     </motion.div>
   );
@@ -109,6 +132,7 @@ function ProjectSkeleton() {
 
 export function Projects() {
   const [activeFilter, setActiveFilter] = useState<Category>('all');
+  const [showAll, setShowAll] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { data: projects, isLoading } = useProjects();
@@ -116,6 +140,12 @@ export function Projects() {
   const filteredProjects = activeFilter === 'all'
     ? projects
     : projects?.filter((p) => p.category === activeFilter);
+
+  const visibleProjects = showAll 
+    ? filteredProjects 
+    : filteredProjects?.slice(0, INITIAL_VISIBLE_COUNT);
+
+  const hasMoreProjects = (filteredProjects?.length || 0) > INITIAL_VISIBLE_COUNT;
 
   return (
     <section id="projects" className="py-20 md:py-32 bg-secondary/30" ref={ref}>
@@ -145,7 +175,10 @@ export function Projects() {
           {filters.map((filter) => (
             <button
               key={filter.value}
-              onClick={() => setActiveFilter(filter.value)}
+              onClick={() => {
+                setActiveFilter(filter.value);
+                setShowAll(false);
+              }}
               className={cn(
                 "px-6 py-2 rounded-full text-sm font-medium transition-all duration-300",
                 activeFilter === filter.value
@@ -163,21 +196,48 @@ export function Projects() {
           layout
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {isLoading ? (
-            <>
-              <ProjectSkeleton />
-              <ProjectSkeleton />
-              <ProjectSkeleton />
-              <ProjectSkeleton />
-              <ProjectSkeleton />
-              <ProjectSkeleton />
-            </>
-          ) : (
-            filteredProjects?.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
-            ))
-          )}
+          <AnimatePresence mode="popLayout">
+            {isLoading ? (
+              <>
+                <ProjectSkeleton />
+                <ProjectSkeleton />
+                <ProjectSkeleton />
+                <ProjectSkeleton />
+                <ProjectSkeleton />
+                <ProjectSkeleton />
+              </>
+            ) : (
+              visibleProjects?.map((project, index) => (
+                <ProjectCard key={project.id} project={project} index={index} />
+              ))
+            )}
+          </AnimatePresence>
         </motion.div>
+
+        {/* See More / Show Less Button */}
+        {hasMoreProjects && !isLoading && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className="flex justify-center mt-10"
+          >
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="group flex items-center gap-2 px-8 py-3 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-all duration-300 glow-effect"
+            >
+              {showAll ? (
+                <>
+                  Show Less <ChevronUp className="w-5 h-5 transition-transform group-hover:-translate-y-1" />
+                </>
+              ) : (
+                <>
+                  See More Projects <ChevronDown className="w-5 h-5 transition-transform group-hover:translate-y-1" />
+                </>
+              )}
+            </button>
+          </motion.div>
+        )}
       </div>
     </section>
   );
