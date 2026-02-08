@@ -60,23 +60,65 @@ export function About() {
 
   return (
     <section id="about" className="py-20 md:py-32 relative overflow-hidden" ref={ref}>
-      {/* Video background with blur and fade */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Video element - Place your video at: public/videos/background.mp4 */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          src="/videos/background.mp4"
+      {/* Animated background */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Base gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background" />
+        
+        {/* Floating orbs */}
+        <motion.div
+          animate={{
+            x: [0, 50, 0],
+            y: [0, -30, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 left-1/4 w-[350px] h-[350px] bg-primary/8 rounded-full blur-[100px]"
         />
-        {/* Blur overlay */}
-        <div className="absolute inset-0" />
-        {/* Dark fade overlay */}
-        <div className="absolute inset-0 bg-background/60" />
-        {/* Gradient edges */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+        <motion.div
+          animate={{
+            x: [0, -40, 0],
+            y: [0, 40, 0],
+            scale: [1, 0.9, 1],
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/8 rounded-full blur-[120px]"
+        />
+        <motion.div
+          animate={{
+            x: [0, 30, 0],
+            y: [0, -50, 0],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/2 right-1/3 w-[300px] h-[300px] bg-primary/5 rounded-full blur-[80px]"
+        />
+        
+        {/* Particle field */}
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              y: [0, -20, 0],
+              opacity: [0.2, 0.5, 0.2],
+            }}
+            transition={{
+              duration: 4 + i,
+              repeat: Infinity,
+              delay: i * 0.3,
+            }}
+            className="absolute w-1.5 h-1.5 bg-primary/30 rounded-full"
+            style={{
+              left: `${15 + i * 15}%`,
+              top: `${25 + (i % 3) * 25}%`,
+            }}
+          />
+        ))}
+        
+        {/* Grid overlay */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
+          backgroundSize: '60px 60px',
+        }} />
       </div>
       
       <div className="w-full md:w-[80%] mx-auto px-4 relative z-10">
@@ -138,15 +180,37 @@ export function About() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -8 }}
-                className="group relative p-6 text-center overflow-hidden rounded-xl bg-card border border-border"
+                className="group relative p-6 text-center overflow-hidden rounded-xl bg-card/80 backdrop-blur-sm border border-border"
               >
-                {/* Animated wave background under the box */}
-                <div className="absolute inset-0 -z-10">
-                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-primary/5 to-transparent animate-pulse" />
-                  <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute -bottom-4 left-0 right-0 h-8 bg-primary/10 rounded-full blur-md animate-float" style={{ animationDelay: `${index * 0.2}s` }} />
-                  </div>
-                </div>
+                {/* Animated gradient background */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                />
+                
+                {/* Floating particle inside box */}
+                <motion.div
+                  animate={{
+                    y: [-5, 5, -5],
+                    x: [-3, 3, -3],
+                  }}
+                  transition={{ duration: 3 + index, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute top-4 right-4 w-2 h-2 bg-primary/40 rounded-full blur-[2px]"
+                />
+                
+                {/* Shimmer effect on hover */}
+                <motion.div
+                  className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/5 to-transparent"
+                />
+                
+                {/* Pulsing ring effect */}
+                <motion.div
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.1, 0.2, 0.1],
+                  }}
+                  transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
+                  className="absolute inset-0 border border-primary/20 rounded-xl"
+                />
                 
                 <h3 className="relative text-4xl md:text-5xl font-heading font-bold gradient-text mb-2">
                   <Counter target={stat.value} />

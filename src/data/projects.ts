@@ -26,10 +26,10 @@ export const fallbackProjects: FallbackProject[] = [
     id: "fallback-1",
     title: "PirateOne",
     description: "Advanced web-based entertainment platform that lets users browse and watch movies, TV shows, and anime with search, watchlist, and history features.",
-    image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-9.png",
+    image_url: "/images/pirateone-thumbnail.png",
     category: "app",
     tech: ["HTML", "CSS", "JavaScript"],
-    live_url: "https://piratexone.vercel.app/",
+    live_url: "http://pirateone-main.vercel.app/",
     display_order: 1
   },
   {
