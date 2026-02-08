@@ -218,23 +218,65 @@ export function Skills() {
 
   return (
     <section id="skills" className="py-20 md:py-32 relative overflow-hidden" ref={ref}>
-      {/* Video background with blur and fade */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Video element - Place your video at: public/videos/background.mp4 */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          src="/videos/background.mp4"
+      {/* Animated background */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Base gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background" />
+        
+        {/* Floating orbs */}
+        <motion.div
+          animate={{
+            x: [0, -40, 0],
+            y: [0, 30, 0],
+            scale: [1, 1.15, 1],
+          }}
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/3 right-1/4 w-[380px] h-[380px] bg-primary/8 rounded-full blur-[100px]"
         />
-        {/* Blur overlay */}
-        <div className="absolute inset-0 backdrop-blur-sm" />
-        {/* Dark fade overlay */}
-        <div className="absolute inset-0 bg-background/60" />
-        {/* Gradient edges */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+        <motion.div
+          animate={{
+            x: [0, 50, 0],
+            y: [0, -40, 0],
+            scale: [1, 0.85, 1],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/3 left-1/4 w-[320px] h-[320px] bg-accent/10 rounded-full blur-[90px]"
+        />
+        <motion.div
+          animate={{
+            x: [0, 25, 0],
+            y: [0, 35, 0],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/2 left-1/2 w-[250px] h-[250px] bg-primary/5 rounded-full blur-[70px]"
+        />
+        
+        {/* Particle field */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              y: [0, -25, 0],
+              opacity: [0.15, 0.4, 0.15],
+            }}
+            transition={{
+              duration: 5 + i * 0.5,
+              repeat: Infinity,
+              delay: i * 0.4,
+            }}
+            className="absolute w-1.5 h-1.5 bg-primary/25 rounded-full"
+            style={{
+              left: `${10 + i * 11}%`,
+              top: `${20 + (i % 4) * 20}%`,
+            }}
+          />
+        ))}
+        
+        {/* Grid overlay */}
+        <div className="absolute inset-0 opacity-[0.015]" style={{
+          backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
+          backgroundSize: '70px 70px',
+        }} />
       </div>
 
       <div className="w-full md:w-[80%] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
