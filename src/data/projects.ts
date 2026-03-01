@@ -12,16 +12,6 @@ export interface FallbackProject {
 
 export const fallbackProjects: FallbackProject[] = [
   {
-    id: "fallback-0",
-    title: "Ender Chest",
-    description: "An advanced storage solution for notes, files, and media with seamless upload, organization, and access from anywhere.",
-    image_url: "/placeholder.svg",
-    category: "app",
-    tech: ["Vite", "TypeScript", "React", "Supabase"],
-    live_url: "#",
-    display_order: 0
-  },
-  {
     id: "fallback-strike",
     title: "Strike",
     description: "A sleek live sports streaming platform to watch football, cricket, motorsports, and more — all free with a dark cyber-themed interface and real-time match browsing.",
