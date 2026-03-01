@@ -19,8 +19,17 @@ export const fallbackProjects: FallbackProject[] = [
     category: "app",
     tech: ["Vite", "TypeScript", "React", "Supabase"],
     live_url: "#",
-    display_order: 0,
-    coming_soon: true
+    display_order: 0
+  },
+  {
+    id: "fallback-strike",
+    title: "Strike",
+    description: "A sleek live sports streaming platform to watch football, cricket, motorsports, and more — all free with a dark cyber-themed interface and real-time match browsing.",
+    image_url: "/images/strike-thumbnail.png",
+    category: "app",
+    tech: ["HTML", "CSS", "JavaScript"],
+    live_url: "https://strike-main.vercel.app/",
+    display_order: 1
   },
   {
     id: "fallback-1",
