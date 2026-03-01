@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Users } from 'lucide-react';
 import { useVisitorCount } from '@/hooks/useVisitorCount';
 import { useAnimatedCounter } from '@/hooks/useAnimatedCounter';
@@ -25,8 +24,6 @@ export function Header() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
-      // Detect active section
       const sections = ['home', 'about', 'projects', 'skills', 'contact'];
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -43,16 +40,13 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [location]);
+  useEffect(() => { setIsMobileMenuOpen(false); }, [location]);
 
   const handleNavClick = (href: string) => {
     if (href.startsWith('/#')) {
       const sectionId = href.replace('/#', '');
       if (location.pathname === '/') {
-        const element = document.getElementById(sectionId);
-        element?.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
       }
     }
     setIsMobileMenuOpen(false);
@@ -60,53 +54,24 @@ export function Header() {
 
   return (
     <>
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          isScrolled
-            ? "bg-background/80 backdrop-blur-lg border-b border-border"
-            : "bg-transparent"
-        )}
-      >
+      <header className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        isScrolled ? "bg-background/80 backdrop-blur-lg border-b border-border" : "bg-transparent"
+      )}>
         <div className="container mx-auto px-4 md:px-[10%]">
           <div className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo - Left */}
             <Link to="/" className="flex items-center group shrink-0">
-              <motion.img
-                whileHover={{ rotate: 360, scale: 1.1 }}
-                transition={{ duration: 0.5 }}
-                src="https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/logo.png"
-                alt="Logo"
-                className="w-12 h-12 md:w-14 md:h-14 rounded-lg"
-              />
+              <img src="https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/logo.png" alt="Logo" className="w-12 h-12 md:w-14 md:h-14 rounded-lg" />
             </Link>
 
-            {/* Desktop Navigation - Absolutely Centered */}
             <nav className="hidden md:flex items-center absolute left-1/2 -translate-x-1/2">
               <div className="flex items-center gap-1 px-2 py-2 rounded-full bg-secondary/50 backdrop-blur-sm border border-border">
                 {navLinks.map((link) => {
                   const sectionId = link.href.replace('/#', '');
                   const isActive = activeSection === sectionId;
                   return (
-                    <Link
-                      key={link.href}
-                      to={link.href}
-                      onClick={(e) => {
-                        if (link.href.startsWith('/#')) {
-                          e.preventDefault();
-                          handleNavClick(link.href);
-                        }
-                      }}
-                      className={cn(
-                        "relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
-                        isActive
-                          ? "bg-primary text-primary-foreground"
-                          : "text-muted-foreground hover:text-foreground hover:bg-secondary"
-                      )}
-                    >
+                    <Link key={link.href} to={link.href} onClick={(e) => { if (link.href.startsWith('/#')) { e.preventDefault(); handleNavClick(link.href); } }}
+                      className={cn("relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300", isActive ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground hover:bg-secondary")}>
                       {link.label}
                     </Link>
                   );
@@ -114,76 +79,40 @@ export function Header() {
               </div>
             </nav>
 
-            {/* Visitor Counter - Desktop - Right */}
             <div className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border">
               <Users className="w-4 h-4 text-primary" />
               <span className="text-sm text-muted-foreground">Visitors:</span>
-              <span className="text-sm font-semibold text-foreground tabular-nums">
-                {animatedCount.toLocaleString()}
-              </span>
+              <span className="text-sm font-semibold text-foreground tabular-nums">{animatedCount.toLocaleString()}</span>
             </div>
 
-            {/* Mobile: Logo Left, Visitor Center, Menu Right */}
             <div className="md:hidden flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary/50 border border-border absolute left-1/2 -translate-x-1/2">
               <Users className="w-3.5 h-3.5 text-primary" />
               <span className="text-xs font-semibold tabular-nums">{animatedCount.toLocaleString()}</span>
             </div>
 
-            {/* Mobile Menu Button - Right */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-foreground shrink-0"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden p-2 text-foreground shrink-0" aria-label="Toggle menu">
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
-      </motion.header>
+      </header>
 
-      {/* Mobile Navigation */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-16 z-40 bg-background/95 backdrop-blur-lg border-b border-border md:hidden"
-          >
-            <nav className="container mx-auto px-4 py-6 flex flex-col gap-2">
-              {navLinks.map((link) => {
-                const sectionId = link.href.replace('/#', '');
-                const isActive = activeSection === sectionId;
-                return (
-                  <Link
-                    key={link.href}
-                    to={link.href}
-                    onClick={(e) => {
-                      if (link.href.startsWith('/#')) {
-                        e.preventDefault();
-                        handleNavClick(link.href);
-                      }
-                    }}
-                    className={cn(
-                      "text-lg py-3 px-4 rounded-lg transition-colors",
-                      isActive
-                        ? "bg-primary text-primary-foreground"
-                        : "text-muted-foreground hover:text-foreground hover:bg-secondary"
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isMobileMenuOpen && (
+        <div className="fixed inset-x-0 top-16 z-40 bg-background/95 backdrop-blur-lg border-b border-border md:hidden animate-fade-in">
+          <nav className="container mx-auto px-4 py-6 flex flex-col gap-2">
+            {navLinks.map((link) => {
+              const sectionId = link.href.replace('/#', '');
+              const isActive = activeSection === sectionId;
+              return (
+                <Link key={link.href} to={link.href} onClick={(e) => { if (link.href.startsWith('/#')) { e.preventDefault(); handleNavClick(link.href); } }}
+                  className={cn("text-lg py-3 px-4 rounded-lg transition-colors", isActive ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground hover:bg-secondary")}>
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
+      )}
     </>
   );
 }

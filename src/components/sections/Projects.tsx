@@ -1,5 +1,4 @@
-import { useState, useRef } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 import { ExternalLink, Clock, ChevronDown, ChevronUp } from 'lucide-react';
 import { useProjects, type Project } from '@/hooks/useProjects';
 import { cn } from '@/lib/utils';
@@ -16,99 +15,50 @@ const filters: { value: Category; label: string }[] = [
 
 const INITIAL_VISIBLE_COUNT = 9;
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function ProjectCard({ project }: { project: Project }) {
   const isComingSoon = project.coming_soon;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -30 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      layout
-      className={cn(
-        "group gradient-border overflow-hidden",
-        isComingSoon && "opacity-90"
-      )}
-    >
-      {/* Image */}
+    <div className={cn("group gradient-border overflow-hidden", isComingSoon && "opacity-90")}>
       <div className="relative h-40 overflow-hidden bg-secondary">
         <img
           src={project.image_url || '/placeholder.svg'}
           alt={project.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
-          onError={(e) => {
-            e.currentTarget.src = '/placeholder.svg';
-          }}
+          onError={(e) => { e.currentTarget.src = '/placeholder.svg'; }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-40" />
-        
-        {/* Coming Soon Badge */}
         {isComingSoon && (
           <div className="absolute top-3 right-3 px-3 py-1 bg-primary/90 text-primary-foreground rounded-full text-xs font-medium flex items-center gap-1">
-            <Clock className="w-3 h-3" />
-            Coming Soon
+            <Clock className="w-3 h-3" /> Coming Soon
           </div>
         )}
-        
-        {/* Overlay on hover */}
         {!isComingSoon && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileHover={{ opacity: 1 }}
-            className="absolute inset-0 bg-primary/20 backdrop-blur-sm flex items-center justify-center"
-          >
-            <a
-              href={project.live_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium flex items-center gap-2 hover:bg-primary/90 transition-colors"
-            >
+          <div className="absolute inset-0 bg-primary/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <a href={project.live_url} target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium flex items-center gap-2 hover:bg-primary/90 transition-colors">
               Live Demo <ExternalLink className="w-4 h-4" />
             </a>
-          </motion.div>
+          </div>
         )}
       </div>
-
-      {/* Content */}
       <div className="p-6 bg-card">
-        <h3 className="text-xl font-heading font-semibold mb-2 group-hover:text-primary transition-colors">
-          {project.title}
-        </h3>
-        <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-          {project.description}
-        </p>
-        
-        {/* Tech Stack */}
+        <h3 className="text-xl font-heading font-semibold mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
+        <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{project.description}</p>
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tech.map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 text-xs bg-secondary rounded-full text-muted-foreground"
-            >
-              {tech}
-            </span>
+            <span key={tech} className="px-3 py-1 text-xs bg-secondary rounded-full text-muted-foreground">{tech}</span>
           ))}
         </div>
-
-        {/* Link */}
         {isComingSoon ? (
-          <span className="inline-flex items-center gap-2 text-muted-foreground text-sm font-medium">
-            <Clock className="w-4 h-4" /> In Development
-          </span>
+          <span className="inline-flex items-center gap-2 text-muted-foreground text-sm font-medium"><Clock className="w-4 h-4" /> In Development</span>
         ) : (
-          <a
-            href={project.live_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-primary hover:underline text-sm font-medium"
-          >
+          <a href={project.live_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-primary hover:underline text-sm font-medium">
             View Project <ExternalLink className="w-4 h-4" />
           </a>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -133,108 +83,38 @@ function ProjectSkeleton() {
 export function Projects() {
   const [activeFilter, setActiveFilter] = useState<Category>('all');
   const [showAll, setShowAll] = useState(false);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { data: projects, isLoading } = useProjects();
 
   const filteredProjects = activeFilter === 'all'
     ? projects
     : projects?.filter((p) => p.category === activeFilter);
 
-  const visibleProjects = showAll 
-    ? filteredProjects 
+  const visibleProjects = showAll
+    ? filteredProjects
     : filteredProjects?.slice(0, INITIAL_VISIBLE_COUNT);
 
   const hasMoreProjects = (filteredProjects?.length || 0) > INITIAL_VISIBLE_COUNT;
 
   return (
-    <section id="projects" className="py-20 md:py-32 relative overflow-hidden" ref={ref}>
-      {/* Animated background */}
+    <section id="projects" className="py-20 md:py-32 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        {/* Base gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
-        
-        {/* Floating orbs */}
-        <motion.div
-          animate={{
-            x: [0, 60, 0],
-            y: [0, -40, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/3 left-1/6 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[80px]"
-        />
-        <motion.div
-          animate={{
-            x: [0, -50, 0],
-            y: [0, 50, 0],
-            scale: [1, 0.9, 1],
-          }}
-          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-1/3 right-1/6 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px]"
-        />
-        
-        {/* Particle field */}
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.3, 0.7, 0.3],
-            }}
-            transition={{
-              duration: 5 + i,
-              repeat: Infinity,
-              delay: i * 0.4,
-            }}
-            className="absolute w-2 h-2 bg-primary/40 rounded-full"
-            style={{
-              left: `${10 + i * 12}%`,
-              top: `${20 + (i % 3) * 30}%`,
-            }}
-          />
-        ))}
-        
-        {/* Grid overlay */}
-        <div className="absolute inset-0 opacity-[0.015]" style={{
-          backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
-          backgroundSize: '80px 80px',
-        }} />
+        <div className="absolute top-1/3 left-1/6 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[80px]" />
+        <div className="absolute bottom-1/3 right-1/6 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px]" />
       </div>
       
       <div className="w-full md:w-[80%] mx-auto px-4 relative z-10">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <span className="text-primary text-sm uppercase tracking-widest font-medium">
-            My Work
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mt-2">
-            Recent Projects
-          </h2>
-          <p className="text-muted-foreground mt-3">
-            {projects?.length || 0} Projects
-          </p>
-        </motion.div>
+        <div className="text-center mb-12">
+          <span className="text-primary text-sm uppercase tracking-widest font-medium">My Work</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mt-2">Recent Projects</h2>
+          <p className="text-muted-foreground mt-3">{projects?.length || 0} Projects</p>
+        </div>
 
-        {/* Filters */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-3 mb-12"
-        >
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
           {filters.map((filter) => (
             <button
               key={filter.value}
-              onClick={() => {
-                setActiveFilter(filter.value);
-                setShowAll(false);
-              }}
+              onClick={() => { setActiveFilter(filter.value); setShowAll(false); }}
               className={cn(
                 "px-6 py-2 rounded-full text-sm font-medium transition-all duration-300",
                 activeFilter === filter.value
@@ -245,54 +125,31 @@ export function Projects() {
               {filter.label}
             </button>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Projects Grid */}
-        <motion.div
-          layout
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          <AnimatePresence mode="popLayout">
-            {isLoading ? (
-              <>
-                <ProjectSkeleton />
-                <ProjectSkeleton />
-                <ProjectSkeleton />
-                <ProjectSkeleton />
-                <ProjectSkeleton />
-                <ProjectSkeleton />
-              </>
-            ) : (
-              visibleProjects?.map((project, index) => (
-                <ProjectCard key={project.id} project={project} index={index} />
-              ))
-            )}
-          </AnimatePresence>
-        </motion.div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {isLoading ? (
+            <>{Array.from({ length: 6 }).map((_, i) => <ProjectSkeleton key={i} />)}</>
+          ) : (
+            visibleProjects?.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))
+          )}
+        </div>
 
-        {/* See More / Show Less Button */}
         {hasMoreProjects && !isLoading && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-            className="flex justify-center mt-10"
-          >
+          <div className="flex justify-center mt-10">
             <button
               onClick={() => setShowAll(!showAll)}
               className="group flex items-center gap-2 px-8 py-3 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-all duration-300 glow-effect"
             >
               {showAll ? (
-                <>
-                  Show Less <ChevronUp className="w-5 h-5 transition-transform group-hover:-translate-y-1" />
-                </>
+                <>Show Less <ChevronUp className="w-5 h-5 transition-transform group-hover:-translate-y-1" /></>
               ) : (
-                <>
-                  See More Projects <ChevronDown className="w-5 h-5 transition-transform group-hover:translate-y-1" />
-                </>
+                <>See More Projects <ChevronDown className="w-5 h-5 transition-transform group-hover:translate-y-1" /></>
               )}
             </button>
-          </motion.div>
+          </div>
         )}
       </div>
     </section>
