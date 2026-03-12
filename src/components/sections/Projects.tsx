@@ -113,7 +113,7 @@ export function Projects() {
               className={cn(
                 "px-6 py-2 rounded-full text-sm font-medium transition-all duration-300",
                 activeFilter === filter.value
-                  ? "btn-aurora btn-aurora-pulse"
+                  ? "btn-aurora"
                   : "bg-secondary text-muted-foreground hover:bg-secondary/80 hover:text-foreground"
               )}
             >
@@ -136,7 +136,7 @@ export function Projects() {
           <div className="flex justify-center mt-10">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="group flex items-center gap-2 px-8 py-3 btn-aurora rounded-full font-medium transition-all duration-300"
+              className="group flex items-center gap-2 px-8 py-3 btn-aurora rounded-full font-medium transition-all duration-300 shadow-lg"
             >
               {showAll ? (
                 <>Show Less <ChevronUp className="w-5 h-5 transition-transform group-hover:-translate-y-1" /></>
