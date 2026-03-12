@@ -125,7 +125,7 @@ export function Contact() {
               </div>
               <div className="relative">
                 <FileText className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                <Input {...register('subject')} placeholder="Subject" className="pl-11 bg-card border-border focus:border-primary h-12" />
+                <Input {...register('subject')} placeholder="Subject" className="pl-11 bg-card/50 backdrop-blur-sm border-border focus:border-primary h-12" />
                 {errors.subject && <p className="text-destructive text-sm mt-1">{errors.subject.message}</p>}
               </div>
               <div className="relative">
