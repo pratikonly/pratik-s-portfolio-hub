@@ -299,10 +299,10 @@ html {
   /* Glow pulse for boxes */
   @keyframes glow-pulse {
     0%, 100% {
-      box-shadow: 0 0 15px hsl(270 70% 60% / 0.2), inset 0 0 15px hsl(270 70% 60% / 0.05);
+      box-shadow: 0 0 15px hsl(210 100% 56% / 0.2), inset 0 0 15px hsl(210 100% 56% / 0.05);
     }
     50% {
-      box-shadow: 0 0 30px hsl(270 70% 60% / 0.4), inset 0 0 20px hsl(270 70% 60% / 0.1);
+      box-shadow: 0 0 30px hsl(210 100% 56% / 0.4), inset 0 0 20px hsl(210 100% 56% / 0.1);
     }
   }
 
