@@ -76,7 +76,7 @@ export function Contact() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           <div className="space-y-6">
             {contactInfo.map((item) => (
-              <div key={item.label} className="group p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-all duration-300">
+              <div key={item.label} className="group p-6 rounded-xl bg-card/50 backdrop-blur-sm border border-border hover:border-primary/50 transition-all duration-300">
                 <div className="flex items-start gap-4">
                   <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
                     <item.icon className="w-6 h-6 text-primary" />
