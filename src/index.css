@@ -227,10 +227,10 @@ html {
 
   @keyframes pulse-glow {
     0%, 100% {
-      box-shadow: 0 0 20px hsl(270 70% 60% / 0.3);
+      box-shadow: 0 0 20px hsl(210 100% 56% / 0.3);
     }
     50% {
-      box-shadow: 0 0 40px hsl(270 70% 60% / 0.5);
+      box-shadow: 0 0 40px hsl(210 100% 56% / 0.5);
     }
   }
 
