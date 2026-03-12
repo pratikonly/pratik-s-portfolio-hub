@@ -66,11 +66,6 @@ export function Contact() {
 
   return (
     <section id="contact" className="py-20 md:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-secondary/30 to-background" />
-        <div className="absolute top-1/4 right-1/4 w-[450px] h-[450px] bg-primary/12 rounded-full blur-[90px]" />
-        <div className="absolute bottom-1/4 left-1/4 w-[550px] h-[550px] bg-accent/12 rounded-full blur-[110px]" />
-      </div>
       
       <div className="w-full md:w-[80%] mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
@@ -81,7 +76,7 @@ export function Contact() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           <div className="space-y-6">
             {contactInfo.map((item) => (
-              <div key={item.label} className="group p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-all duration-300">
+              <div key={item.label} className="group p-6 rounded-xl bg-card/50 backdrop-blur-sm border border-border hover:border-primary/50 transition-all duration-300">
                 <div className="flex items-start gap-4">
                   <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
                     <item.icon className="w-6 h-6 text-primary" />
@@ -103,7 +98,7 @@ export function Contact() {
                   href={link.href}
                   target={link.href.startsWith('http') ? '_blank' : undefined}
                   rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="p-4 rounded-full bg-card border border-border hover:border-primary/50 text-muted-foreground hover:text-primary transition-all duration-300 hover-scale"
+                  className="p-4 rounded-full bg-card/50 backdrop-blur-sm border border-border hover:border-primary/50 text-muted-foreground hover:text-primary transition-all duration-300 hover-scale"
                   aria-label={link.label}
                 >
                   {link.isCustom ? (
@@ -120,22 +115,22 @@ export function Contact() {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
               <div className="relative">
                 <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                <Input {...register('name')} placeholder="Your Name" className="pl-11 bg-card border-border focus:border-primary h-12" />
+                <Input {...register('name')} placeholder="Your Name" className="pl-11 bg-card/50 backdrop-blur-sm border-border focus:border-primary h-12" />
                 {errors.name && <p className="text-destructive text-sm mt-1">{errors.name.message}</p>}
               </div>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                <Input {...register('email')} type="email" placeholder="Your Email" className="pl-11 bg-card border-border focus:border-primary h-12" />
+                <Input {...register('email')} type="email" placeholder="Your Email" className="pl-11 bg-card/50 backdrop-blur-sm border-border focus:border-primary h-12" />
                 {errors.email && <p className="text-destructive text-sm mt-1">{errors.email.message}</p>}
               </div>
               <div className="relative">
                 <FileText className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                <Input {...register('subject')} placeholder="Subject" className="pl-11 bg-card border-border focus:border-primary h-12" />
+                <Input {...register('subject')} placeholder="Subject" className="pl-11 bg-card/50 backdrop-blur-sm border-border focus:border-primary h-12" />
                 {errors.subject && <p className="text-destructive text-sm mt-1">{errors.subject.message}</p>}
               </div>
               <div className="relative">
                 <MessageSquare className="absolute left-3 top-3 w-5 h-5 text-muted-foreground" />
-                <Textarea {...register('message')} placeholder="Your Message" rows={5} className="pl-11 bg-card border-border focus:border-primary resize-none" />
+                <Textarea {...register('message')} placeholder="Your Message" rows={5} className="pl-11 bg-card/50 backdrop-blur-sm border-border focus:border-primary resize-none" />
                 {errors.message && <p className="text-destructive text-sm mt-1">{errors.message.message}</p>}
               </div>
               <Button type="submit" size="lg" disabled={isSubmitting} className="w-full btn-primary h-12">

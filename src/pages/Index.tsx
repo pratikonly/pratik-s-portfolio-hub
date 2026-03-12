@@ -9,7 +9,7 @@ import { Chatbot } from '@/components/Chatbot';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative z-10 min-h-screen">
       <Header />
       <main>
         <Hero />

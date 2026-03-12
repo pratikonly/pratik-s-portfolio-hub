@@ -126,12 +126,6 @@ function SkillIcon({ icon }: SkillIconProps) {
 export function Skills() {
   return (
     <section id="skills" className="py-20 md:py-32 relative overflow-hidden">
-      {/* Static background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background" />
-        <div className="absolute top-1/3 right-1/4 w-[380px] h-[380px] bg-primary/8 rounded-full blur-[100px]" />
-        <div className="absolute bottom-1/3 left-1/4 w-[320px] h-[320px] bg-accent/10 rounded-full blur-[90px]" />
-      </div>
 
       <div className="w-full md:w-[80%] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
@@ -153,7 +147,7 @@ export function Skills() {
                 {category.skills.map((skill) => (
                   <div key={skill.name} className="group cursor-default hover-scale">
                     <div className="flex flex-col items-center gap-3">
-                      <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center bg-secondary/70 backdrop-blur-md border border-border/50 group-hover:border-primary/70 shadow-sm group-hover:shadow-xl transition-all duration-300 overflow-hidden">
+                      <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center bg-secondary/50 backdrop-blur-md border border-border/50 group-hover:border-primary/70 shadow-sm group-hover:shadow-xl transition-all duration-300 overflow-hidden">
                         <div
                           className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-400 blur-2xl"
                           style={{ backgroundColor: iconColors[skill.icon] }}

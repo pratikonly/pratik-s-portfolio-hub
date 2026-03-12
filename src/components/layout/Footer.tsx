@@ -6,7 +6,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-card border-t border-border py-8">
+    <footer className="bg-card/50 backdrop-blur-sm border-t border-border py-8">
       <div className="w-full md:w-[80%] mx-auto px-4">
         <div className="flex items-center justify-between">
           <button
