@@ -42,7 +42,7 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
         )}
       </div>
-      <div className="p-6 bg-card">
+      <div className="p-6 bg-card/50 backdrop-blur-sm">
         <h3 className="text-xl font-heading font-semibold mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
         <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{project.description}</p>
         <div className="flex flex-wrap gap-2 mb-4">
