@@ -5,6 +5,7 @@
 /* Zoom out effect - 10% smaller */
 html {
   font-size: 14.4px; /* 16px * 0.9 = 14.4px for 10% zoom out */
+  background: #000000; /* FIX: ensures no white flash before WebGL loads */
 }
 
 /* Pratik's Portfolio Design System - Dark Theme with Purple Accents */
@@ -119,7 +120,7 @@ html {
   body {
     @apply text-foreground;
     font-family: 'Inter', sans-serif;
-    background: transparent;
+    background: #000000; /* FIX: was "transparent" — black prevents white flash before WebGL mounts */
   }
 
   h1, h2, h3, h4, h5, h6 {
