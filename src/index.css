@@ -313,10 +313,10 @@ html {
   /* Border glow animation */
   @keyframes border-glow {
     0%, 100% {
-      border-color: hsl(270 70% 60% / 0.3);
+      border-color: hsl(210 100% 56% / 0.3);
     }
     50% {
-      border-color: hsl(270 70% 60% / 0.7);
+      border-color: hsl(210 100% 56% / 0.7);
     }
   }
 
