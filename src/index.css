@@ -198,7 +198,7 @@ html {
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--primary) / 0.7);
+    background: #0055FFB3;
   }
 
   /* Selection styling */
