@@ -94,7 +94,7 @@ export function About() {
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="p-6 text-center rounded-xl bg-card/80 backdrop-blur-sm border border-border"
+                className="p-6 text-center rounded-xl bg-card/50 backdrop-blur-sm border border-border"
               >
                 <h3 className="text-4xl md:text-5xl font-heading font-bold gradient-text mb-2">
                   <Counter target={stat.value} />
