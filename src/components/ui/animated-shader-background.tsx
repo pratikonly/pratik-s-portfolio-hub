@@ -120,7 +120,7 @@ export function AnimatedShaderBackground() {
     <div
       ref={containerRef}
       className="fixed inset-0 w-full h-full"
-      style={{ zIndex: 0 }}
+      style={{ zIndex: 0, background: '#000000' }} // FIX: black fallback so no white shows if WebGL is slow/errors
     />
   );
 }
