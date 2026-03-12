@@ -83,7 +83,7 @@ export default function Auth() {
               className="pl-11 h-12 bg-card"
             />
           </div>
-          <Button type="submit" disabled={loading} className="w-full h-12 btn-primary">
+          <Button type="submit" disabled={loading} className="w-full h-12 btn-aurora rounded-full">
             {loading ? 'Signing in...' : (
               <>
                 <LogIn className="w-4 h-4 mr-2" />

@@ -36,7 +36,7 @@ function ProjectCard({ project }: { project: Project }) {
         )}
         {!isComingSoon && (
           <div className="absolute inset-0 bg-primary/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <a href={project.live_url} target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium flex items-center gap-2 hover:bg-primary/90 transition-colors">
+            <a href={project.live_url} target="_blank" rel="noopener noreferrer" className="px-6 py-3 btn-aurora rounded-lg font-medium flex items-center gap-2">
               Live Demo <ExternalLink className="w-4 h-4" />
             </a>
           </div>
@@ -113,8 +113,8 @@ export function Projects() {
               className={cn(
                 "px-6 py-2 rounded-full text-sm font-medium transition-all duration-300",
                 activeFilter === filter.value
-                  ? "bg-primary text-primary-foreground glow-effect"
-                  : "bg-secondary text-muted-foreground hover:bg-secondary/80"
+                  ? "btn-aurora btn-aurora-pulse"
+                  : "bg-secondary text-muted-foreground hover:bg-secondary/80 hover:text-foreground"
               )}
             >
               {filter.label}
@@ -136,7 +136,7 @@ export function Projects() {
           <div className="flex justify-center mt-10">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="group flex items-center gap-2 px-8 py-3 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-all duration-300 glow-effect"
+              className="group flex items-center gap-2 px-8 py-3 btn-aurora rounded-full font-medium transition-all duration-300"
             >
               {showAll ? (
                 <>Show Less <ChevronUp className="w-5 h-5 transition-transform group-hover:-translate-y-1" /></>

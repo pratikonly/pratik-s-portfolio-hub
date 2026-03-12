@@ -135,7 +135,7 @@ export function Chatbot() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-primary text-primary-foreground shadow-lg"
+        className="fixed bottom-6 right-6 z-50 p-4 rounded-full btn-aurora shadow-lg"
         aria-label="Open chat"
       >
         <Bot className="w-6 h-6" />
@@ -226,7 +226,7 @@ export function Chatbot() {
                 placeholder="Ask me anything..."
                 className="bg-secondary border-0 rounded-full"
               />
-              <Button size="icon" onClick={() => handleSend()} className="shrink-0 rounded-full">
+              <Button size="icon" onClick={() => handleSend()} className="shrink-0 rounded-full btn-aurora">
                 <Send className="w-4 h-4" />
               </Button>
             </div>

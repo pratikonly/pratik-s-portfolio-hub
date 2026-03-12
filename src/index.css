@@ -183,6 +183,77 @@ html {
     transform: translateY(-2px);
   }
 
+  /* NEW: Aurora pill button (for nav) */
+  .btn-aurora {
+    background: var(--gradient-primary);
+    color: hsl(var(--primary-foreground));
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-aurora::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  .btn-aurora:hover {
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+
+  .btn-aurora:hover::before {
+    transform: translateX(100%);
+  }
+
+  /* NEW: Aurora outline button */
+  .btn-aurora-outline {
+    position: relative;
+    background: transparent;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .btn-aurora-outline::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+    background: var(--gradient-primary);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  .btn-aurora-outline:hover {
+    background: var(--gradient-primary);
+    color: hsl(var(--primary-foreground));
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* NEW: Aurora filter button active state */
+  .btn-aurora-active {
+    background: var(--gradient-primary);
+    color: hsl(var(--primary-foreground));
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* NEW: Glow animation for extra emphasis */
+  .btn-aurora-pulse {
+    animation: aurora-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes aurora-pulse {
+    0%, 100% { box-shadow: 0 0 20px #0055FF40; }
+    50% { box-shadow: 0 0 40px #0055FF80, 0 0 60px #14CCCC40; }
+  }
+
   /* Scrollbar styling */
   ::-webkit-scrollbar {
     width: 8px;
