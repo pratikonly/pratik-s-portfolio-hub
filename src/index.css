@@ -300,10 +300,10 @@ html {
   /* Glow pulse for boxes */
   @keyframes glow-pulse {
     0%, 100% {
-      box-shadow: 0 0 15px hsl(210 100% 56% / 0.2), inset 0 0 15px hsl(210 100% 56% / 0.05);
+      box-shadow: 0 0 15px #0055FF33, inset 0 0 15px #0055FF0D;
     }
     50% {
-      box-shadow: 0 0 30px hsl(210 100% 56% / 0.4), inset 0 0 20px hsl(210 100% 56% / 0.1);
+      box-shadow: 0 0 30px #0055FF66, inset 0 0 20px #0055FF1A;
     }
   }
 
@@ -314,10 +314,10 @@ html {
   /* Border glow animation */
   @keyframes border-glow {
     0%, 100% {
-      border-color: hsl(210 100% 56% / 0.3);
+      border-color: #0055FF4D;
     }
     50% {
-      border-color: hsl(210 100% 56% / 0.7);
+      border-color: #0055FFB3;
     }
   }
 
