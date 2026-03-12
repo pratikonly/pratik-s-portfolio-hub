@@ -133,7 +133,7 @@ export function Contact() {
                 <Textarea {...register('message')} placeholder="Your Message" rows={5} className="pl-11 bg-card/50 backdrop-blur-sm border-border focus:border-primary resize-none" />
                 {errors.message && <p className="text-destructive text-sm mt-1">{errors.message.message}</p>}
               </div>
-              <Button type="submit" size="lg" disabled={isSubmitting} className="w-full btn-primary h-12">
+              <Button type="submit" size="lg" disabled={isSubmitting} className="w-full btn-aurora h-12 rounded-full">
                 {isSubmitting ? 'Sending...' : (<>Send Message <Send className="w-4 h-4 ml-2" /></>)}
               </Button>
             </form>

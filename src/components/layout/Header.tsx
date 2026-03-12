@@ -71,7 +71,7 @@ export function Header() {
                   const isActive = activeSection === sectionId;
                   return (
                     <Link key={link.href} to={link.href} onClick={(e) => { if (link.href.startsWith('/#')) { e.preventDefault(); handleNavClick(link.href); } }}
-                      className={cn("relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300", isActive ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground hover:bg-secondary")}>
+                      className={cn("relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300", isActive ? "btn-aurora" : "text-muted-foreground hover:text-foreground hover:bg-secondary")}>
                       {link.label}
                     </Link>
                   );
@@ -105,7 +105,7 @@ export function Header() {
               const isActive = activeSection === sectionId;
               return (
                 <Link key={link.href} to={link.href} onClick={(e) => { if (link.href.startsWith('/#')) { e.preventDefault(); handleNavClick(link.href); } }}
-                  className={cn("text-lg py-3 px-4 rounded-lg transition-colors", isActive ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground hover:bg-secondary")}>
+                  className={cn("text-lg py-3 px-4 rounded-lg transition-colors", isActive ? "btn-aurora" : "text-muted-foreground hover:text-foreground hover:bg-secondary")}>
                   {link.label}
                 </Link>
               );

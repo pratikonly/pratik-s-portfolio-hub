@@ -11,7 +11,7 @@ export function Footer() {
         <div className="flex items-center justify-between">
           <button
             onClick={scrollToTop}
-            className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors hover-scale"
+            className="p-3 rounded-full btn-aurora-outline hover:btn-aurora transition-all duration-300"
             aria-label="Back to top"
           >
             <ArrowUp className="w-5 h-5" />

@@ -119,7 +119,7 @@ export function Hero() {
           >
             <Button
               size="lg"
-              className="btn-primary px-8 py-6 text-lg"
+              className="btn-aurora px-8 py-6 text-lg rounded-full"
               onClick={scrollToProjects}
             >
               View My Work

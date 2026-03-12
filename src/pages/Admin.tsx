@@ -179,7 +179,7 @@ export default function Admin() {
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Access Denied</h1>
           <p className="text-muted-foreground mb-4">You don't have admin privileges.</p>
-          <Button onClick={() => navigate('/')}>Go Home</Button>
+          <Button variant="aurora" onClick={() => navigate('/')}>Go Home</Button>
         </div>
       </div>
     );
@@ -194,7 +194,7 @@ export default function Admin() {
             <Button variant="outline" size="icon" onClick={fetchData} disabled={refreshing}>
               <RefreshCw className={`w-4 h-4 ${refreshing ? 'animate-spin' : ''}`} />
             </Button>
-            <Button variant="outline" onClick={handleSignOut}>
+            <Button variant="aurora-outline" onClick={handleSignOut}>
               <LogOut className="w-4 h-4 mr-2" /> Sign Out
             </Button>
           </div>
