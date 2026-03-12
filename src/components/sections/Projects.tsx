@@ -66,7 +66,7 @@ function ProjectSkeleton() {
   return (
     <div className="gradient-border overflow-hidden">
       <Skeleton className="h-48 w-full" />
-      <div className="p-6 bg-card space-y-3">
+      <div className="p-6 bg-card/50 backdrop-blur-sm space-y-3">
         <Skeleton className="h-6 w-3/4" />
         <Skeleton className="h-4 w-full" />
         <Skeleton className="h-4 w-2/3" />

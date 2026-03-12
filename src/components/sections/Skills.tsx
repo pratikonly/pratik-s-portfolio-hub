@@ -147,7 +147,7 @@ export function Skills() {
                 {category.skills.map((skill) => (
                   <div key={skill.name} className="group cursor-default hover-scale">
                     <div className="flex flex-col items-center gap-3">
-                      <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center bg-secondary/70 backdrop-blur-md border border-border/50 group-hover:border-primary/70 shadow-sm group-hover:shadow-xl transition-all duration-300 overflow-hidden">
+                      <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center bg-secondary/50 backdrop-blur-md border border-border/50 group-hover:border-primary/70 shadow-sm group-hover:shadow-xl transition-all duration-300 overflow-hidden">
                         <div
                           className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-400 blur-2xl"
                           style={{ backgroundColor: iconColors[skill.icon] }}
