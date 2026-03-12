@@ -98,7 +98,7 @@ export function Contact() {
                   href={link.href}
                   target={link.href.startsWith('http') ? '_blank' : undefined}
                   rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="p-4 rounded-full bg-card border border-border hover:border-primary/50 text-muted-foreground hover:text-primary transition-all duration-300 hover-scale"
+                  className="p-4 rounded-full bg-card/50 backdrop-blur-sm border border-border hover:border-primary/50 text-muted-foreground hover:text-primary transition-all duration-300 hover-scale"
                   aria-label={link.label}
                 >
                   {link.isCustom ? (
