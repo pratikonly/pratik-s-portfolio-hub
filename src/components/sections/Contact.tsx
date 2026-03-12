@@ -66,11 +66,6 @@ export function Contact() {
 
   return (
     <section id="contact" className="py-20 md:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-secondary/30 to-background" />
-        <div className="absolute top-1/4 right-1/4 w-[450px] h-[450px] bg-primary/12 rounded-full blur-[90px]" />
-        <div className="absolute bottom-1/4 left-1/4 w-[550px] h-[550px] bg-accent/12 rounded-full blur-[110px]" />
-      </div>
       
       <div className="w-full md:w-[80%] mx-auto px-4 relative z-10">
         <div className="text-center mb-16">

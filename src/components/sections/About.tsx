@@ -60,12 +60,6 @@ const infoItems = [
 export function About() {
   return (
     <section id="about" className="py-20 md:py-32 relative overflow-hidden">
-      {/* Static background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background" />
-        <div className="absolute top-1/4 left-1/4 w-[350px] h-[350px] bg-primary/8 rounded-full blur-[100px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/8 rounded-full blur-[120px]" />
-      </div>
       
       <div className="w-full md:w-[80%] mx-auto px-4 relative z-10">
         <div className="text-center mb-16">

@@ -97,11 +97,6 @@ export function Projects() {
 
   return (
     <section id="projects" className="py-20 md:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
-        <div className="absolute top-1/3 left-1/6 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[80px]" />
-        <div className="absolute bottom-1/3 right-1/6 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px]" />
-      </div>
       
       <div className="w-full md:w-[80%] mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
