@@ -283,6 +283,7 @@ html {
 @layer utilities {
   .animate-float {
     animation: float 6s ease-in-out infinite;
+    will-change: transform;
   }
 
   @keyframes float {
@@ -296,6 +297,7 @@ html {
 
   .animate-pulse-glow {
     animation: pulse-glow 2s ease-in-out infinite;
+    will-change: box-shadow;
   }
 
   @keyframes pulse-glow {
@@ -339,14 +341,17 @@ html {
 
   .animate-orb {
     animation: orb-float 20s ease-in-out infinite;
+    will-change: transform;
   }
 
   .animate-orb-delayed {
     animation: orb-float 25s ease-in-out infinite 5s;
+    will-change: transform;
   }
 
   .animate-orb-slow {
     animation: orb-float 30s ease-in-out infinite 10s;
+    will-change: transform;
   }
 
   /* Particle shimmer */
@@ -367,6 +372,7 @@ html {
 
   .animate-shimmer {
     animation: shimmer 3s ease-in-out infinite;
+    will-change: transform, opacity;
   }
 
   /* Glow pulse for boxes */
@@ -381,6 +387,7 @@ html {
 
   .animate-glow-pulse {
     animation: glow-pulse 3s ease-in-out infinite;
+    will-change: box-shadow;
   }
 
   /* Border glow animation */
@@ -395,5 +402,37 @@ html {
 
   .animate-border-glow {
     animation: border-glow 2s ease-in-out infinite;
+    will-change: border-color;
+  }
+
+  /* Prefers reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    .animate-float,
+    .animate-pulse-glow,
+    .animate-gradient,
+    .animate-orb,
+    .animate-orb-delayed,
+    .animate-orb-slow,
+    .animate-shimmer,
+    .animate-glow-pulse,
+    .animate-border-glow,
+    .btn-aurora-pulse {
+      animation: none !important;
+    }
+
+    .btn-aurora:hover,
+    .btn-aurora-outline:hover,
+    .hover-scale:hover {
+      transform: none !important;
+    }
   }
 }

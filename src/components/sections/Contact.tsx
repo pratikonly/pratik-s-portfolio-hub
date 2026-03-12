@@ -114,22 +114,22 @@ export function Contact() {
           <div>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
               <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground shrink-0" />
                 <Input {...register('name')} placeholder="Your Name" className="pl-11 bg-card/50 backdrop-blur-sm border-border focus:border-primary h-12" />
                 {errors.name && <p className="text-destructive text-sm mt-1">{errors.name.message}</p>}
               </div>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground shrink-0" />
                 <Input {...register('email')} type="email" placeholder="Your Email" className="pl-11 bg-card/50 backdrop-blur-sm border-border focus:border-primary h-12" />
                 {errors.email && <p className="text-destructive text-sm mt-1">{errors.email.message}</p>}
               </div>
               <div className="relative">
-                <FileText className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                <FileText className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground shrink-0" />
                 <Input {...register('subject')} placeholder="Subject" className="pl-11 bg-card/50 backdrop-blur-sm border-border focus:border-primary h-12" />
                 {errors.subject && <p className="text-destructive text-sm mt-1">{errors.subject.message}</p>}
               </div>
               <div className="relative">
-                <MessageSquare className="absolute left-3 top-3 w-5 h-5 text-muted-foreground" />
+                <MessageSquare className="absolute left-3 top-3 w-5 h-5 text-muted-foreground shrink-0" />
                 <Textarea {...register('message')} placeholder="Your Message" rows={5} className="pl-11 bg-card/50 backdrop-blur-sm border-border focus:border-primary resize-none" />
                 {errors.message && <p className="text-destructive text-sm mt-1">{errors.message.message}</p>}
               </div>
