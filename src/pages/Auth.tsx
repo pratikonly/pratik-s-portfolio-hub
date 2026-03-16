@@ -11,7 +11,7 @@ export default function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signIn, signUp } = useAuth();
+  const { signIn } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -19,20 +19,6 @@ export default function Auth() {
     e.preventDefault();
     setLoading(true);
     
-    // Try sign up first, then sign in
-    const { error: signUpError } = await signUp(email, password);
-    
-    if (signUpError && !signUpError.message.includes('already registered')) {
-      // If not already registered error, try sign in
-      const { error: signInError } = await signIn(email, password);
-      if (signInError) {
-        toast({ title: 'Error', description: signInError.message, variant: 'destructive' });
-        setLoading(false);
-        return;
-      }
-    }
-    
-    // If signup succeeded or user exists, sign in
     const { error } = await signIn(email, password);
     if (error) {
       toast({ title: 'Error', description: error.message, variant: 'destructive' });
@@ -44,7 +30,7 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4 relative z-10">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
