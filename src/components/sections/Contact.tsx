@@ -129,8 +129,8 @@ export function Contact() {
                 {errors.subject && <p className="text-destructive text-sm mt-1">{errors.subject.message}</p>}
               </div>
               <div className="relative">
-                <MessageSquare className="absolute left-3 top-3 w-5 h-5 text-muted-foreground shrink-0" />
-                <Textarea {...register('message')} placeholder="Your Message" rows={5} className="pl-11 bg-card/50 backdrop-blur-sm border-border focus:border-primary resize-none" />
+                <MessageSquare className="absolute left-3 top-3 w-5 h-5 text-muted-foreground shrink-0 z-10" />
+                <Textarea {...register('message')} placeholder="Your Message" rows={5} className="pl-11 bg-card/50 border-border focus:border-primary resize-none" />
                 {errors.message && <p className="text-destructive text-sm mt-1">{errors.message.message}</p>}
               </div>
               <Button type="submit" size="lg" disabled={isSubmitting} className="w-full btn-aurora h-12 rounded-full">
