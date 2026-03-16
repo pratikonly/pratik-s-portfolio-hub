@@ -170,7 +170,7 @@ export default function Admin() {
   }, {} as Record<string, number>);
 
   if (loading) {
-    return <div className="min-h-screen bg-background flex items-center justify-center">Loading...</div>;
+    return <div className="min-h-screen flex items-center justify-center relative z-10">Loading...</div>;
   }
 
   if (!isAdmin) {
