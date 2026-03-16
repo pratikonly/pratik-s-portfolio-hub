@@ -114,8 +114,8 @@ export function Contact() {
           <div>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
               <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground shrink-0" />
-                <Input {...register('name')} placeholder="Your Name" className="pl-11 bg-card/50 backdrop-blur-sm border-border focus:border-primary h-12" />
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground shrink-0 z-10" />
+                <Input {...register('name')} placeholder="Your Name" className="pl-11 bg-card/50 border-border focus:border-primary h-12" />
                 {errors.name && <p className="text-destructive text-sm mt-1">{errors.name.message}</p>}
               </div>
               <div className="relative">
