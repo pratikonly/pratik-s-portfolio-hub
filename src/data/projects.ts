@@ -15,7 +15,7 @@ export const fallbackProjects: FallbackProject[] = [
     id: "fallback-void",
     title: "Void",
     description: "A curated resource vault with 7 categories, real-time search, admin panel, starred posts, and a Discord bot (Emu) for bidirectional sync. Built with aurora glassmorphism UI and a Resend-powered feedback system. v3 of CloudxVault.",
-    image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-4.PNG",
+    image_url: "/images/void-thumbnail.png",
     category: "app",
     tech: ["Next.js", "TypeScript", "Python"],
     live_url: "https://void-main.vercel.app/",
