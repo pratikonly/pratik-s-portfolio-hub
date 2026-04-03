@@ -22,15 +22,15 @@ export const fallbackProjects: FallbackProject[] = [
     display_order: 15,
   },
   {
-  id: "fallback-vxe",
-  title: "Video Editor Portfolio",
-  description: "A cinematic portfolio for Vaibhav Arya, a freelance video editor — featuring work showcase, pricing, about section, and a contact form. Built with a bold black & yellow aesthetic.",
-  image_url: "/images/vxe-thumbnail.png",
-  category: "website",
-  tech: ["Next.js", "TypeScript", "Supabase", "Resend"],
-  live_url: "https://vxe.vercel.app/",
-  display_order: 1, 
-},
+    id: "fallback-vxe",
+    title: "Video Editor Portfolio",
+    description: "A cinematic portfolio for Vaibhav Arya, a freelance video editor — featuring work showcase, pricing, about section, and a contact form. Built with a bold black & yellow aesthetic.",
+    image_url: "/images/vxe-thumbnail.png",
+    category: "website",
+    tech: ["Next.js", "TypeScript", "Supabase", "Resend"],
+    live_url: "https://vxe.vercel.app/",
+    display_order: 14,
+  },
   {
     id: "fallback-void",
     title: "Void",
@@ -39,17 +39,17 @@ export const fallbackProjects: FallbackProject[] = [
     category: "app",
     tech: ["Next.js", "TypeScript", "Python"],
     live_url: "https://void-main.vercel.app/",
-    display_order: 2
+    display_order: 13,
   },
   {
     id: "fallback-strike",
     title: "Strike",
-    description: "A sleek live sports streaming platform to watch football, cricket, motorsports, and more — all free with a dark cyber-themed interface and real-time match browsing.",
+    description: "A sleek live sports streaming platform to watch football, cricket, basketball, motorsports, and more — all free with a dark cyber-themed interface and real-time match browsing.",
     image_url: "/images/strike-thumbnail.png",
     category: "app",
-    tech: ["HTML", "CSS", "JavaScript"],
+    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
     live_url: "https://strike-main.vercel.app/",
-    display_order: 3
+    display_order: 12,
   },
   {
     id: "fallback-1",
@@ -59,7 +59,7 @@ export const fallbackProjects: FallbackProject[] = [
     category: "app",
     tech: ["HTML", "CSS", "JavaScript"],
     live_url: "http://pirateone-main.vercel.app/",
-    display_order: 4
+    display_order: 11,
   },
   {
     id: "fallback-2",
@@ -69,7 +69,7 @@ export const fallbackProjects: FallbackProject[] = [
     category: "website",
     tech: ["Vite", "TypeScript", "HTML", "CSS", "JavaScript"],
     live_url: "https://blackxpearl.vercel.app/",
-    display_order: 5
+    display_order: 10,
   },
   {
     id: "fallback-3",
@@ -79,7 +79,7 @@ export const fallbackProjects: FallbackProject[] = [
     category: "app",
     tech: ["HTML", "CSS", "JavaScript"],
     live_url: "https://exciler.vercel.app/",
-    display_order: 6
+    display_order: 9,
   },
   {
     id: "fallback-4",
@@ -89,7 +89,7 @@ export const fallbackProjects: FallbackProject[] = [
     category: "app",
     tech: ["HTML", "CSS", "JavaScript"],
     live_url: "https://nestxmain.vercel.app/",
-    display_order: 7
+    display_order: 8,
   },
   {
     id: "fallback-5",
@@ -99,7 +99,7 @@ export const fallbackProjects: FallbackProject[] = [
     category: "website",
     tech: ["Vite", "TypeScript", "HTML", "CSS", "JavaScript"],
     live_url: "https://scrolls-main.vercel.app/",
-    display_order: 8
+    display_order: 7,
   },
   {
     id: "fallback-6",
@@ -109,7 +109,7 @@ export const fallbackProjects: FallbackProject[] = [
     category: "website",
     tech: ["HTML", "CSS", "JavaScript"],
     live_url: "https://devtriseczone.vercel.app/",
-    display_order: 9
+    display_order: 6,
   },
   {
     id: "fallback-7",
@@ -119,7 +119,7 @@ export const fallbackProjects: FallbackProject[] = [
     category: "app",
     tech: ["HTML", "CSS", "JavaScript"],
     live_url: "https://cloudxvault2.vercel.app/",
-    display_order: 10
+    display_order: 5,
   },
   {
     id: "fallback-8",
@@ -129,7 +129,7 @@ export const fallbackProjects: FallbackProject[] = [
     category: "ui",
     tech: ["JavaScript", "HTML", "CSS"],
     live_url: "https://cloudxvault.vercel.app/",
-    display_order: 11
+    display_order: 4,
   },
   {
     id: "fallback-9",
@@ -139,7 +139,7 @@ export const fallbackProjects: FallbackProject[] = [
     category: "website",
     tech: ["HTML", "CSS", "JavaScript"],
     live_url: "https://window-activate.vercel.app/",
-    display_order: 12
+    display_order: 3,
   },
   {
     id: "fallback-10",
@@ -149,7 +149,7 @@ export const fallbackProjects: FallbackProject[] = [
     category: "app",
     tech: ["HTML", "CSS", "JavaScript"],
     live_url: "https://notaforge.vercel.app/",
-    display_order: 13
+    display_order: 2,
   },
   {
     id: "fallback-11",
@@ -159,6 +159,6 @@ export const fallbackProjects: FallbackProject[] = [
     category: "website",
     tech: ["HTML", "CSS", "JavaScript"],
     live_url: "http://portfolio-bypratik.vercel.app/",
-    display_order: 14
+    display_order: 1,
   }
 ];
