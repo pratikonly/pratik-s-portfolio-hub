@@ -27,8 +27,10 @@ function normalizeProjects(fallback: FallbackProject[]): Project[] {
 }
 
 export function useProjects() {
-  // Return static data from JSON file
-  const projects = normalizeProjects(fallbackProjects);
+  // Return static data sorted by display_order descending (newest first)
+  const projects = normalizeProjects(fallbackProjects).sort(
+    (a, b) => b.display_order - a.display_order
+  );
   
   return {
     data: projects,
