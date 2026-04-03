@@ -119,6 +119,7 @@ const iconColors: Record<string, string> = {
   github: '#000000',
   vscode: '#007ACC',
   vercel: '#000000',
+  python: '#3776AB',
 };
 
 type SkillIconProps = { icon: string };
