@@ -12,6 +12,16 @@ export interface FallbackProject {
 
 export const fallbackProjects: FallbackProject[] = [
   {
+    id: "fallback-sweettooth",
+    title: "SweetTooth",
+    description: "A warm, elegant bakery website for a home-based business — featuring a menu, story section, WhatsApp ordering, and a cozy brown aesthetic with animated pastry illustrations.",
+    image_url: "/images/sweettooth-thumbnail.png",
+    category: "website",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+    live_url: "https://sweettooth-alpha.vercel.app/",
+    display_order: 15,
+  },
+  {
   id: "fallback-vxe",
   title: "Video Editor Portfolio",
   description: "A cinematic portfolio for Vaibhav Arya, a freelance video editor — featuring work showcase, pricing, about section, and a contact form. Built with a bold black & yellow aesthetic.",
