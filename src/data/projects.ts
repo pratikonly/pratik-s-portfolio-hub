@@ -69,7 +69,7 @@ export const fallbackProjects: FallbackProject[] = [
     image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-6.jpg",
     category: "website",
     tech: ["HTML", "CSS", "JavaScript"],
-    live_url: "https://devtriseczone.vercel.app/",
+    live_url: "https://devtriseczone.in/",
     display_order: 10,
   },
   {
