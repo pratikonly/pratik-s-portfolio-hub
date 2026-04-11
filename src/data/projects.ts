@@ -61,6 +61,17 @@ export const fallbackProjects: FallbackProject[] = [
     live_url: "http://pirateone-main.vercel.app/",
     display_order: 11,
   },
+  
+  {
+    id: "fallback-6",
+    title: "Devtri Seczone Private Limited",
+    description: "A responsive Empowering Industries website with modern design and professional layout.",
+    image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-6.jpg",
+    category: "website",
+    tech: ["HTML", "CSS", "JavaScript"],
+    live_url: "https://devtriseczone.vercel.app/",
+    display_order: 10,
+  },
   {
     id: "fallback-2",
     title: "Black Pearl AI",
@@ -69,7 +80,7 @@ export const fallbackProjects: FallbackProject[] = [
     category: "website",
     tech: ["Vite", "TypeScript", "HTML", "CSS", "JavaScript"],
     live_url: "https://blackxpearl.vercel.app/",
-    display_order: 10,
+    display_order: 9,
   },
   {
     id: "fallback-3",
@@ -79,7 +90,7 @@ export const fallbackProjects: FallbackProject[] = [
     category: "app",
     tech: ["HTML", "CSS", "JavaScript"],
     live_url: "https://exciler.vercel.app/",
-    display_order: 9,
+    display_order: 8,
   },
   {
     id: "fallback-4",
@@ -89,7 +100,7 @@ export const fallbackProjects: FallbackProject[] = [
     category: "app",
     tech: ["HTML", "CSS", "JavaScript"],
     live_url: "https://nestxmain.vercel.app/",
-    display_order: 8,
+    display_order: 7,
   },
   {
     id: "fallback-5",
@@ -99,16 +110,6 @@ export const fallbackProjects: FallbackProject[] = [
     category: "website",
     tech: ["Vite", "TypeScript", "HTML", "CSS", "JavaScript"],
     live_url: "https://scrolls-main.vercel.app/",
-    display_order: 7,
-  },
-  {
-    id: "fallback-6",
-    title: "Devtri Seczone Private Limited",
-    description: "A responsive Empowering Industries website with modern design and professional layout.",
-    image_url: "https://raw.githubusercontent.com/pratik11500/PratikPortfolio/refs/heads/replit-agent/assets/images/project-6.jpg",
-    category: "website",
-    tech: ["HTML", "CSS", "JavaScript"],
-    live_url: "https://devtriseczone.vercel.app/",
     display_order: 6,
   },
   {
